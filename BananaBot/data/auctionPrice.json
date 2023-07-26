@@ -1,0 +1,318 @@
+{
+  "God Potion": {
+    "uuid": "ed3e5a6a67c44c139f126f2b1ba3a909",
+    "price": 1400000
+  },
+  "Jumbo Backpack Upgrade": {
+    "uuid": "44a08d485f92482c9940a4626d2072dc",
+    "price": 4600000
+  },
+  "Heat Core": {
+    "uuid": "c78f717383c34e70bd05a2ff8796f810",
+    "price": 2999000
+  },
+  "Endersnake Rune": {
+    "uuid": "de0dcb98489e410382c208b96bad797e",
+    "price": 65000
+  },
+  "Snake Rune": {
+    "uuid": "b9879bf30a1a4272ad5ad1a25bfc24e5",
+    "price": 29000
+  },
+  "Hologram": {
+    "uuid": "8225ff94ae0b4e4595d63c32ed3bdea5",
+    "price": 1300000
+  },
+  "Sinful Dice": {
+    "uuid": "c486e62d04774bbc8865bd23dce6b3d2",
+    "price": 20000
+  },
+  "Hyper Catalyst Upgrade": {
+    "uuid": "40006905269948f79960fbab955608f7",
+    "price": 300000
+  },
+  "Accessory Enrichment Swapper": {
+    "uuid": "7d663bf1939c43a997ad6c888f70289c",
+    "price": 199000
+  },
+  "Bits Talisman": {
+    "uuid": "fe098f6c965e420fa4eb2339faa03856",
+    "price": 13300000
+  },
+  "High Class Archfiend Dice": {
+    "uuid": "8deb93e7227f403593e5f251ee5f8e38",
+    "price": 46500000
+  },
+  "Archfiend Dice": {
+    "uuid": "4a10bca2b0ed484aa44e235eadb8c037",
+    "price": 6999000
+  },
+  "Mana Disintegrator": {
+    "uuid": "9cfe3668f9284df99c7fd7950ac63393",
+    "price": 1000000
+  },
+  "Kat Flower": {
+    "uuid": "65ebafa9df434fddb33cf29c5ec08138",
+    "price": 498000
+  },
+  "Lotus Belt": {
+    "uuid": "bc2dfcc228874edfab45baf7bc1158dd",
+    "price": 699000
+  },
+  "Lotus Bracelet": {
+    "uuid": "8e8309b870434563b153c681ace07563",
+    "price": 290000
+  },
+  "Lotus Cloak": {
+    "uuid": "b6653227dc2843839528d7bff6a8f5a2",
+    "price": 2699900
+  },
+  "Matriarch's Perfume": {
+    "uuid": "f4ff7ab8ab2c45deaa63ca83272a7f62",
+    "price": 1750000
+  },
+  "Health Enrichment": {
+    "uuid": "25ad1e86f1154e309986ff27c608b870",
+    "price": 5399999
+  },
+  "Scythe Blade": {
+    "uuid": "39eaa9fc5c984f52acab9e05b88f2393",
+    "price": 7400000
+  },
+  "Beheaded Horror": {
+    "uuid": "fa0af262f638461ab46ebe1f9ba8bbfe",
+    "price": 50000
+  },
+  "Builder's Ruler": {
+    "uuid": "5ac2febda0ef4e279357e7a1d170ad90",
+    "price": 134000
+  },
+  "Critical Chance Enrichment": {
+    "uuid": "f4f32ea8c2284c9ea8aab9121d3f50a0",
+    "price": 5490000
+  },
+  "Garden Scythe": {
+    "uuid": "770ae3972ce54014bf354403bd9724b9",
+    "price": 150000
+  },
+  "Red Claw Egg": {
+    "uuid": "52096e825d6b4a20a1247b69bc7c21a8",
+    "price": 950000
+  },
+  "Exceedingly Rare Ender Artifact Upgrade": {
+    "uuid": "1775a377fc084191b6084e0c93b5ebc2",
+    "price": 25000000
+  },
+  "Sea Creature Chance Enrichment": {
+    "uuid": "2be924da1f844b8a9f966c4947e0123b",
+    "price": 5500000
+  },
+  "Tarantula Talisman": {
+    "uuid": "8bae243f38aa44ecbe6afe4d28b52246",
+    "price": 3100000
+  },
+  "Pocket Espresso Machine": {
+    "uuid": "7c7ead15875347fe815b02bcf39e9478",
+    "price": 324000
+  },
+  "Lotus Necklace": {
+    "uuid": "04a059e01237478dbf11623df53ad530",
+    "price": 1200000
+  },
+  "Spirit Rune": {
+    "uuid": "d5a3f254461b4a5d8827ecd28010c60f",
+    "price": 22000
+  },
+  "Wilson's Engineering Plans": {
+    "uuid": "ba4b18bd28af46d8a229c4d696dc6a37",
+    "price": 7500000
+  },
+  "End Rune": {
+    "uuid": "6f97607a481946529f84ca4db9c1f726",
+    "price": 400000
+  },
+  "Builder's Wand": {
+    "uuid": "26e0762e82fd42e7b0372e51ab71ffa7",
+    "price": 7800000
+  },
+  "Portalizer": {
+    "uuid": "1e9f808b87e84e16bef2116f0b0d18e4",
+    "price": 4900000
+  },
+  "Pocket Sack-in-a-Sack": {
+    "uuid": "c23281afe6b14e548a552a61c0d2db85",
+    "price": 8600000
+  },
+  "Ultimate Carrot Candy Upgrade": {
+    "uuid": "269c9ade99e440afb611f7ced4d23a12",
+    "price": 9000000
+  },
+  "Water Hydra Head": {
+    "uuid": "0e9d111433ca4b9299e34da3effe0f8c",
+    "price": 750000
+  },
+  "Bite Rune": {
+    "uuid": "64284fb5f57a4eb8a4d15ad82919b797",
+    "price": 15000
+  },
+  "Autopet Rules 2-Pack": {
+    "uuid": "183e397ea2714a198f5e1243d17e8c52",
+    "price": 23000000
+  },
+  "but Red Abicase": {
+    "uuid": "2d85183763f34367996fcc283784f7d1",
+    "price": 23888000
+  },
+  "Rezar": {
+    "uuid": "593ba03538ca438c93a30df9b81e61e2",
+    "price": 25900000
+  },
+  "Yellow Bandana": {
+    "uuid": "32b4717857dd4fa9b75f0d7cefbae57b",
+    "price": 1690000
+  },
+  "Digested Mosquito": {
+    "uuid": "bc7e09ce1e7443cc83c58f9ec4598a5b",
+    "price": 300000
+  },
+  "Strength Enrichment": {
+    "uuid": "b0715affafb344fd9bfb66d50b7ea68e",
+    "price": 5350000
+  },
+  "Critical Damage Enrichment": {
+    "uuid": "e99e3e08cfa84c498e1f9d8330961068",
+    "price": 5350000
+  },
+  "Speed Enrichment": {
+    "uuid": "d13ec6785c9e4a928ea1285f46a7cd95",
+    "price": 5498000
+  },
+  "Attack Speed Enrichment": {
+    "uuid": "394aa61d41b547f7a8c4bfe042012a46",
+    "price": 5600000
+  },
+  "Ferocity Enrichment": {
+    "uuid": "148de91e41dc402c861ef49cf79daf42",
+    "price": 5350000
+  },
+  "Judgement Core": {
+    "uuid": "9ffa64a118d4448a894c153eb30f092f",
+    "price": 315000000
+  },
+  "but Yellow Abicase": {
+    "uuid": "00a66d5149c94cbc91534a6d907604e2",
+    "price": 18000000
+  },
+  "Shard of the Shredded": {
+    "uuid": "fc02dc172ce7475fa940c7a7f3cdaa18",
+    "price": 20999999
+  },
+  "Handy Blood Chalice": {
+    "uuid": "455368469019423f81a9f2bafddfd4ac",
+    "price": 3000000
+  },
+  "Minion Storage X-pender": {
+    "uuid": "bc5af6712c6547c59e287c525472cb65",
+    "price": 1600000
+  },
+  "Fiery Burst Rune": {
+    "uuid": "99f33fad9b974661b8a65d9b08b9bd3f",
+    "price": 11500000
+  },
+  "Block Zapper": {
+    "uuid": "a172d007c029430e95faa510cef2fc22",
+    "price": 3999999
+  },
+  "Warden Heart": {
+    "uuid": "ec9851051efc4312984cf1a81092ec39",
+    "price": 186999999
+  },
+  "Lavatears Rune": {
+    "uuid": "7dfc882bc35e4d95bbd10fec0b6dfb62",
+    "price": 550000
+  },
+  "Pestilence Rune": {
+    "uuid": "27958ab45e604dec9e8b26598fbf0f85",
+    "price": 9000
+  },
+  "Grizzly Bait": {
+    "uuid": "bbaae91343a148a8aafcbc0bad57c3a0",
+    "price": 199000
+  },
+  "Lighter Blue": {
+    "uuid": "6c370abf85944357b4a6f3f0efb5b2c7",
+    "price": 17800000
+  },
+  "Hive Barn Skin": {
+    "uuid": "8294f90594244b50a9ea74e1fad4a345",
+    "price": 59900000
+  },
+  "G3 Abicase": {
+    "uuid": "059223edc7ad459d9b9cd4873f339946",
+    "price": 17000000
+  },
+  "Intelligence Enrichment": {
+    "uuid": "cb8311abd7be4f13a72b7bddfa943653",
+    "price": 5600000
+  },
+  "Couture Rune": {
+    "uuid": "f9db59c73c294c61b3746ae786bab524",
+    "price": 190000
+  },
+  "Void Conqueror Enderman Skin": {
+    "uuid": "5bc264668d224673a025e5c91ed4c055",
+    "price": 650000
+  },
+  "Abiphone Contacts Trio": {
+    "uuid": "d075811fd570446e991881d91d1a43e7",
+    "price": 7100000
+  },
+  "GG Abicase": {
+    "uuid": "95d4fbf9e0c34200b19fa399ef25ecc6",
+    "price": 25000000
+  },
+  "Magic Find Enrichment": {
+    "uuid": "7df7ac13802240ad92b150904baf325d",
+    "price": 5490000
+  },
+  "Actually Blue": {
+    "uuid": "98f452eb9e1f43caaac21eac52fab895",
+    "price": 17900000
+  },
+  "Enchant Rune": {
+    "uuid": "89fd7b67bc3e42588ad6d1529b7f373f",
+    "price": 8300000
+  },
+  "Bamboo Barn Skin": {
+    "uuid": "0dbd94ea26724549a617fc4eb754f7ea",
+    "price": 38000000
+  },
+  "Defense Enrichment": {
+    "uuid": "005dfe92b55943a0ac478fe22ff7bc28",
+    "price": 5474000
+  },
+  "Colossal Experience Bottle Upgrade": {
+    "uuid": "a80d328d7a644ed9b983d9883926a434",
+    "price": 1200000
+  },
+  "Trading Post Barn Skin": {
+    "uuid": "24fe84a0f56b4ad0b40f0ecbd18f586e",
+    "price": 4900000
+  },
+  "Pure Black Dye": {
+    "uuid": "973fd053db7f42b0a020f7c07155a8f4",
+    "price": 275000000
+  },
+  "Overflux Capacitor": {
+    "uuid": "434c0b5be0db4108b16ab66281e150b0",
+    "price": 104000000
+  },
+  "Pure White Dye": {
+    "uuid": "4f393d8edfaa417db7fd4e319c1b37bf",
+    "price": 274950000
+  },
+  "Castle Barn Skin": {
+    "uuid": "6f4535f4e73c48528e1b9a31644ce822",
+    "price": 75000000
+  }
+}

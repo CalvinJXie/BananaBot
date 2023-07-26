@@ -1,0 +1,67 @@
+{
+    "BIL": [
+        411,
+        10,
+        2,
+        2
+    ],
+    "TCL": [
+        412,
+        390,
+        2,
+        2
+    ],
+    "ETL": [
+        4,
+        490,
+        1,
+        1
+    ],
+    "ITL": [
+        405,
+        420,
+        0,
+        1
+    ],
+    "dailyLoc": [
+        1,
+        5
+    ],
+    "powderLoc": [
+        5,
+        93
+    ],
+    "STL": [
+        4,
+        147
+    ],
+    "BazaarNotif": {},
+    "Party": {
+        "Leader": "",
+        "Members": []
+    },
+    "PartyWL": [
+        "somxone",
+        "hutayo",
+        "lucdj",
+        "volcaronitee",
+        "undeformed",
+        "lhxseven"
+    ],
+    "daily": {
+        "eyedrop": 1690323145928,
+        "matriarch": 1689798253741,
+        "feeder": 1689974834381,
+        "cake": 1690323143577,
+        "hiker": 1690130157158,
+        "visitor": 1690352269905
+    },
+    "world": "Garden",
+    "totalPages": 54,
+    "VEL": [
+        453,
+        17,
+        2,
+        2
+    ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "BananaBot",
+  "creator": "BananaTheBot",
+  "description": "This game sucks. Please support me.",
+  "version": "1.0.0",
+  "entry": "index.js",
+  "requires": [
+    "Vigilance", 
+    "PogData",
+    "requestV2",
+    "Lore"
+  ]
+}
