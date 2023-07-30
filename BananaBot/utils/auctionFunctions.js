@@ -16,6 +16,7 @@ export function setPages(){
 }
 
 const ahDict = readJson("data", "auction.json")["items"]
+
 function findMinPrice(dict) {
   Object.keys(dict).forEach((item)=>{
       let minPrice = Number.MAX_SAFE_INTEGER;
@@ -33,44 +34,42 @@ function findMinPrice(dict) {
 }
 
 export function updateAhPrices(){
-  newDict = {}
-  priceDict = {}
-  pagesChecked = 0;
-  for(let p = 0;p<data.totalPages;p++){
-      const AH = 'https://api.hypixel.net/skyblock/auctions?page='+p;
-      request({
-          url: AH,
-          json:true
-      }).then((response)=>{
-          let auctions = response.auctions;
-          for(let i = 0;i<auctions.length;i++){
-              let auction = auctions[i];
-              if(auction.bin ){
-                  Object.keys(ahDict).forEach((item)=>{     
-                      if(auction.item_name.toLowerCase().includes(item.toLowerCase())){
-                        if(newDict[item]){
-                            newDict[item][auction.uuid] = auction.starting_bid;
-                        }else{
-                            newDict[item] = {[auction.uuid]:auction.starting_bid};
+    newDict = {}
+    pagesChecked = 0;
+    for(let p = 0;p<data.totalPages;p++){
+        const AH = 'https://api.hypixel.net/skyblock/auctions?page='+p;
+        request({
+            url: AH,
+            json:true
+        }).then((response)=>{
+            let auctions = response.auctions;
+            for(let i = 0;i<auctions.length;i++){
+                let auction = auctions[i];
+                if(auction.bin){
+                    itemName = auction.item_name.toLowerCase();
+                    Object.keys(ahDict).forEach((item)=>{     
+                        if(itemName.includes(item.toLowerCase())){
+                            if(newDict[item] == undefined || newDict[item]>auction.starting_bid){
+                                newDict[item] = auction.starting_bid;
+                            }
                         }
-                      }
-                  })
-              }
-          }
-          pagesChecked++;
-          if(pagesChecked == data.totalPages){
-              console.log(`Finished searching ${pagesChecked} pages from auction house`)
-              findMinPrice(newDict);
-          }
-      }).catch((error) =>{
-          console.error(`Failed on page ${p}`)
-          console.error(JSON.stringify(error, false,2))
-          if(pagesChecked == data.totalpages){
-            setPages();
-          }
-          ChatLib.chat("An error occured while searching auction please try again.")
-      })
-  }
+                    })
+                }
+            }
+            pagesChecked++;
+            if(pagesChecked == data.totalPages){
+                console.log(`Finished searching ${pagesChecked} pages from auction house`)
+                writeJson("data", "auctionPrice.json", newDict);
+            }
+        }).catch((error) =>{
+            console.error(`Failed on page ${p}`)
+            console.error(JSON.stringify(error, false,2))
+            if(pagesChecked == data.totalpages){
+                setPages();
+            }
+            ChatLib.chat("An error occured while searching auction please try again.")
+        })
+    }
 }
 
 /*

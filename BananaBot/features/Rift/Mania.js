@@ -56,39 +56,3 @@ function timerOverlay() {
         }
     }
 }
-
-/*
-Entity{name=§c☠ §4Vampire Boss §a1318§c❤, x=192.70486111111111, y=88.96875, z=115.6111111111111}, 
-Entity{name=§c03:44 §6§lTWINCLAWS §b§l0.2s §5§lMANIA §b§l25.9s, x=192.73195301783264, y=89.59512174211248, z=115.62337105624142}, 
-Entity{name=§eSpawned by: §bkai_ken, x=192.5625, y=89.28125, z=115.625}, 
-Entity{name=Armor Stand, x=179.59375, y=84.8125, z=119.1875},
-*/
-
-/*
-import settings from "../../settings";
-import { data } from "../../variables";
-
-const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand");
-
-register("renderOverlay", timerOverlay); // Register the "renderOverlay" event first
-
-function timerOverlay() {
-    if(!settings.twinClaw) return;
-    const stands = World.getAllEntitiesOfType(EntityArmorStand.class);
-    const vamp = stands.filter(stand => stand.getName().includes('TWINCLAWS'));
-    const respawnTimes = vamp.map(stand => {
-        const name = stand.getName();
-        const startIndex = name.indexOf("§6§"); // Start index of the time value
-        const endIndex = name.indexOf("s", startIndex); // End index of the time value
-        const timeString = name.substring(startIndex, endIndex); // Extract the time value
-        return timeString;
-    });
-
-    respawnTimes.forEach((time) => {
-        Renderer.scale(settings.VampScaleX, settings.VampScaleY)
-        Renderer.drawString(time, settings.TCX, settings.TCY);
-
-        //Renderer.drawString(time, data.TCL[0], data.TCL[1]); // Render the timer text
-    });
-}
-*/

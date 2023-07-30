@@ -62,6 +62,14 @@ class settings {
     KuudraPingOffset = "0"
 
     //Trackers
+    @SwitchProperty({
+        name: "Bestiary",
+        description: `Hover over each mob inside your bestiary menu to store the data. Type /br <mobname> to display kills remaining. /br all to display all missing. /br clear <mobname> to manually remove a mob (alpha purposes).`,
+        category: "Trackers",
+        subcategory: " Bestiary"
+    })
+    trackBestiary = false;
+
     @TextProperty({
         name: "Powder Alias",
         description: `write your own alias. Instead of /powder or /pow you can use your own.`,
@@ -345,6 +353,14 @@ class settings {
         subcategory: "Auto"
     })
     autoUpdate = true;
+
+    @SwitchProperty({
+        name: "Display Raw Craft Cost",
+        description: `Displays raw craft cost at the bottom of the item.`,
+        category: "Economy",
+        subcategory: "Item Cost"
+    })
+    displayRawCost = false;
 
     //Auction
     @SwitchProperty({

@@ -13,8 +13,8 @@ function calcExchange(ahDict, bzDict, type){
   coinExchange = {}
   Object.keys(ahDict).forEach((item)=>{
     if(ahPrice[item]){
-      coinExchange[item] = (ahPrice[item].price)/ahDict[item];
-      ChatLib.chat(`${GOLD}${item}${WHITE}: (${GREEN}${formatDouble(ahPrice[item].price)} ${GOLD}coins${WHITE}, ${GREEN}${ahDict[item]} ${type}${WHITE})`)
+      coinExchange[item] = (ahPrice[item])/ahDict[item];
+      ChatLib.chat(`${GOLD}${item}${WHITE}: (${GREEN}${formatDouble(ahPrice[item])} ${GOLD}coins${WHITE}, ${GREEN}${ahDict[item]} ${type}${WHITE})`)
     }else{
       ChatLib.chat(`${YELLOW}Found no active auctions for ${item}. If there are multiple items that do not seem correct do /uah.`)
     }

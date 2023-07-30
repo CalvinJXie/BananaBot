@@ -24,6 +24,68 @@ export const UNDERLINE = '&n';
 export const ITALIC = '&o';
 export const RESET = '&r';
 
+export const LOGO = `&8[&6BananaBot&8] `
+
+//help message
+export const helpMsg = 
+`${LOGO}
+${RED}${BOLD}Mod Related:
+${YELLOW}${BOLD}/banana or /bb ${WHITE}to open the settings menu in order to edit data values.
+${YELLOW}${BOLD}/bbgui ${WHITE}to change the locations of where the text should be displayed. Scaling is a Work In Progress.
+
+${RED}${BOLD}Minions:
+${YELLOW}${BOLD}/hyper ${WHITE}to calculate minion profit per day/hypergolic craft (must input minion speeds in /banana).
+${YELLOW}${BOLD}/heavy ${WHITE}to calculate profit from using heavy gabagool fuel (must input minion speeds in /banana).
+${YELLOW}${BOLD}/minion ${WHITE}to see minion calculations.
+${YELLOW}${BOLD}/minstats <min speed> ${WHITE}to see inferno minion odds for a single minion.
+${YELLOW}${BOLD}/gaba ${WHITE}to calculate profit from crafting hypergolics.
+${YELLOW}${BOLD}/amal ${WHITE}to show craft cost of amalgamted crimsonite.
+${YELLOW}${BOLD}/speed <minion><tier>${WHITE}to find the speed of a minion.
+
+${RED}${BOLD}Money Per Hour Calcs:
+${YELLOW}${BOLD}/<blaze/eman/rev/sven/tara> ${WHITE}to show theoretical money per hour of each slayer.
+${YELLOW}${BOLD}/copper, /bits ${WHITE}to show the exchange rate of coins to a different currency.
+${YELLOW}${BOLD}/farm ${WHITE}to calculate money/hr farming each crop with your input of jacob's event data. This is while using bazaar data.
+${YELLOW}${BOLD}/farmnpc ${WHITE}to calculate money/hr farming each crop with your input of jacob's event data. This is using NPC sell price data.
+${YELLOW}${BOLD}/composter ${WHITE}to show profit per hour/day with composter. Input composter ugprades in /bb.
+${YELLOW}${BOLD}/ghost <kills an hour> ${WHITE}to show coins/hr grinding ghosts.
+
+${RED}${BOLD}Statistics:
+${YELLOW}${BOLD}/binom ${WHITE}to show binomial distribution statistics.
+${YELLOW}${BOLD}/calc "x" (*/+-%) "y" ${WHITE}to do simple math like x * y.
+
+${RED}${BOLD}Bazaar/Auction Related stuff:
+${YELLOW}${BOLD}/itemcalc or /ic <args> ${WHITE}to display craft cost of an item.
+${YELLOW}${BOLD}/bzlist ${WHITE}to display items being tracked.
+${YELLOW}${BOLD}/clear <itemName> ${WHITE}to reset bazaar notifier database tracker. You can get itemName from /bzlist.
+${YELLOW}${BOLD}/ubz or /uah ${WHITE}to manually update bazaar/auction prices.
+${YELLOW}${BOLD}/dailycoin or /dc ${WHITE}to see how much daily money you make a day.
+
+${RED}${BOLD}Party:
+${YELLOW}${BOLD}/resetparty ${WHITE}to reset any bad things that happen during dungeon rejoins.
+${YELLOW}${BOLD}/joinlist <add/remove/show> ${WHITE}to auto join list only parties (if turned on in /banana).
+
+${RED}${BOLD}Trackers:
+${YELLOW}${BOLD}Turn on/off trackers in minecraft controls.
+${YELLOW}${BOLD}/ks <amount> to track remaining kills needed.
+${YELLOW}${BOLD}/powder or /pow <save/remove/rm> ${WHITE}to save/remove tracked powder.
+${YELLOW}${BOLD}/skill or /sk <start/end/reset> ${WHITE}to start skill exp/hr tracker.
+${YELLOW}${BOLD}/bzlist ${WHITE}to show items inside bz notif. ${YELLOW}${BOLD}/clear <item name> ${WHITE}to remove from this list.
+${YELLOW}${BOLD}/dailyreset or /dr (cake, hiker, visitor, matriarch, eyedrop, feeder, remind) ${WHITE}to manually reset dailies if something messes up.
+${YELLOW}${BOLD}/remindme or /remind or /rme <name> <day hour min sec> ${WHITE}to set yourself a timer to remind yourself of something!
+
+${RED}${BOLD}Damage Stuff:
+${YELLOW}${BOLD}/br <all, save, clear <mobname>, clearall>
+
+${RED}${BOLD}Damage Stuff:
+${YELLOW}${BOLD}/dmg (on/off) ${WHITE}to print damage in chat.
+${YELLOW}${BOLD}/rend ${WHITE}to display most rend multipliers and how the damage calculation works.
+${YELLOW}${BOLD}/damage ${WHITE}to display damage multiplier differences.
+
+${RED}${BOLD}Message From Banana:
+${YELLOW}${BOLD}Data should auto save after input, but if it seems like it does not do /ct load to ensure it does. Otherwise bug report it. (it wont be fixed)
+`
+
 //minion speeds
 export const minionActions = {
     'cobble_stone1':14, 'cobble_stone2':14, 'cobble_stone3':12, 'cobble_stone4':12, 'cobble_stone5':10, 'cobble_stone6':10, 'cobble_stone7':9, 'cobble_stone8':9, 'cobble_stone9':8, 'cobble_stone10':8, 'cobble_stone11':7, 'cobble_stone12':6,

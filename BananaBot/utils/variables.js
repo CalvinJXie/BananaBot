@@ -1,13 +1,16 @@
 import PogObject from "../../PogData"
 
 export let data = new PogObject("BananaBot", {
-    "BIL": [100, 40, 2, 2], //Vampire Execute Location [x, y, xScale, yScale]
-    "TCL": [200, 50, 2, 2], //Twin Claw Location
-    "ETL": [10, 10, 1, 1], //Effigy Timer Location
-    "ITL": [200, 30, 1, 1], //Item Timer Location
-    "dailyLoc": [10, 50], //Daily Timer Location
-    "powderLoc": [10, 90], //Powder Tracker Location
-    "STL": [10, 200], //Skill Tracker Location
+    "locations":{
+        "BIL": [100, 40, false], //Blood Ichor Location [x, y, active]
+        "TCL": [200, 50, false], //Twin Claw Location
+        "ETL": [10, 10, false], //Effigy Timer Location
+        "ITL": [200, 30, false], //Item Timer Location
+        "dailyLoc": [10, 50, false], //Daily Timer Location
+        "powderLoc": [10, 90, false], //Powder Tracker Location
+        "STL": [10, 200, false], //Skill Tracker Location
+        "MTL": [10, 120, false], //Mob Tracker Location
+    },
     "BazaarNotif": {},
     "Party":{"Leader":"", "Members":[]},
     "PartyWL": [],

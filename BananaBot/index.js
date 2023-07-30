@@ -1,9 +1,10 @@
 import settings from "./settings"
 //utils
 import { setBzPrices } from "./utils/bazaarFunctions"
-import { helpMsg, setRegisters, registerWhen } from "./utils/functions"
+import { setRegisters, registerWhen } from "./utils/functions"
 import { data } from "./utils/variables"
-import { YELLOW, WHITE, BOLD, RED } from "./utils/constants"
+import { YELLOW, WHITE, BOLD, LOGO, helpMsg } from "./utils/constants"
+import { setPages, updateAhPrices } from "./utils/auctionFunctions"
 //Kuudra
 import "./features/Kuudra/KuudraProfitCalc"
 //Damage calc
@@ -16,6 +17,8 @@ import "./features/Garden/Crops"
 //Coin Exchanges
 import "./features/Exchanges/coinConvert"
 //Trackers
+import "./features/Trackers/trackBestiary"
+import "./features/Trackers/mobsKilled"
 import "./features/Trackers/dailyTimers"
 import "./features/Trackers/Powder"
 import "./features/Trackers/SkillTracker"
@@ -26,7 +29,7 @@ import "./features/Party/PartyCommands"
 import "./features/Party/RejoinDungeon"
 //gui
 import "./features/test"
-import "./features/MoveText"
+import { moveText } from "./features/MoveText"
 //Statistics
 import "./features/Statistics/BinomialDist"
 //qol features
@@ -49,10 +52,11 @@ import "./features/Minions/Heavy"
 import "./features/Economy/CraftFlip"
 import "./features/Economy/AuctionLoop"
 import "./features/Economy/BazaarNotifier"
+import "./features/Economy/displayItemCost"
 //Slayer
+import "./features/Slayer/calcGhost"
 import "./features/Slayer/calcProfit"
 import "./features/Slayer/SlayerKillTime"
-import { setPages, updateAhPrices } from "./utils/auctionFunctions"
 
 data.autosave();
 
@@ -60,12 +64,24 @@ data.autosave();
 const guiKeyBind = new KeyBind("BananaBot Gui", Keyboard.KEY_NONE)
 guiKeyBind.registerKeyPress(()=>settings.openGUI())
 
-register("command", () => settings.openGUI()).setName("banana").setAliases("bb");
+register("command", (args) => {
+  switch(args){
+    case "help":
+      ChatLib.chat(helpMsg)
+      break;
+    case "gui":
+      moveText.open();
+      break;
+    default:
+      settings.openGUI()
+      break;
+  }
+}).setName("banana").setAliases("bb");
 register("guiClosed", () => setRegisters());
 
-welcomeMsg = `${YELLOW}${BOLD}/bbhelp ${WHITE}if you need help with commands
-${YELLOW}${BOLD}/banana ${WHITE}to open the settings menu.
-${YELLOW}${BOLD}/bbgui ${WHITE}to move gui positions.
+welcomeMsg = `${LOGO}${YELLOW}${BOLD}/banana or /bb ${WHITE}to open the settings menu.
+${LOGO}${YELLOW}${BOLD}/bbhelp ${WHITE}if you need help with commands
+${LOGO}${YELLOW}${BOLD}/bbgui ${WHITE}to move gui positions.
 `
 //when chat trigger reloaded command
 register("gameLoad", () => {
@@ -86,10 +102,9 @@ todoList = `Todo:
 Chest profit calc
 Alter ah search to look for attribute prices
 calc pet exp to coin
-calc armor upgrade price
 tax calculator
 shen tracker
-jerry box calc
+change skills to a class maybe?
 Leet Code :)
 `
 register("command", () => ChatLib.chat(todoList)).setName("todo");
@@ -102,21 +117,26 @@ registerWhen(register("step", ()=>{
 
 register("command", () => {
   updateAhPrices();
-  ChatLib.chat("Auction prices updated");
+  ChatLib.chat(LOGO + "Auction prices updated");
 }).setName("uah");
 
 register("command", () => {
   setBzPrices();
-  ChatLib.chat("Bz prices updated");
+  ChatLib.chat(LOGO + "Bz prices updated");
 }).setName("ubz");
 
 register("worldload", () =>{
   setTimeout(()=>{
     tablist = TabList.getNames();
-    if(tablist == null)return;
+    if(tablist == null){
+      data.world = "";
+      return;
+    }
     area = tablist.find((tab)=> tab.indexOf("Area:") != -1);
     if(area){
       data.world = area.removeFormatting().substring(area.indexOf("Area:"), area.length)
+    }else{
+      data.world = "";
     }
   },2000)
 })

@@ -2,20 +2,12 @@ import request from "../../../requestV2";
 import { data } from "../../utils/variables";
 import settings from "../../settings";
 import { YELLOW, BOLD, GREEN, RED } from "../../utils/constants";
-import { formatDouble, registerWhen, readJson } from "../../utils/functions";
-import { findName } from "../../utils/bazaarFunctions";
+import { formatDouble, registerWhen } from "../../utils/functions";
+import { findName, findID } from "../../utils/bazaarFunctions";
 
 const BZ_API = 'https://api.hypixel.net/skyblock/bazaar';
-const bzItems = readJson("data", "bazaar.json")["bazaarNames"]
-function findID(search) {
-    foundItem = ""
-    Object.keys(bzItems).forEach((item) =>{
-        if(item.includes(search)){
-            foundItem = bzItems[item]
-        }
-    })
-    return foundItem;
-}
+hoverName = "";
+hover = false;
 
 //adds price to data
 function handleSellOffer(item, price){
@@ -43,26 +35,32 @@ function createdOrder(item, type){
         }else if(type == "SellOrderPrice"){
             data.BazaarNotif[item].SellCreated = true;
         }
-        ChatLib.chat(`${YELLOW}${BOLD}added ${GREEN}${BOLD}${item} ${YELLOW}${BOLD}to notifications database with a price of ${GREEN}${BOLD}${data.BazaarNotif[item][type]}`)
+        ChatLib.chat(`${YELLOW}${BOLD}added ${GREEN}${BOLD}${findName(item)} ${YELLOW}${BOLD}to notifications database with a price of ${GREEN}${BOLD}${data.BazaarNotif[item][type]}`)
     }
 }
 
 //check if user creates orders
 registerWhen(register('itemToolTip', (itemLore) => {
-    OrderType = itemLore[0]
-    if(typeof OrderType == undefined || OrderType == undefined) return;
-    if(OrderType.indexOf("Buy Order") == -1 && OrderType.indexOf("Sell Offer") == -1) return;
-    OrderPrice = itemLore[3]
-    OrderItem = itemLore[5]
-    if(OrderType.indexOf("Buy Order") == 4 && OrderPrice.indexOf("Price per unit") == 6 && OrderItem.indexOf("Order: ") == 6){
-        quantity = parseInt(OrderItem.substring(OrderItem.indexOf(": ")+4, OrderItem.indexOf("x")))
-        item = findID(OrderItem.substring(OrderItem.indexOf("x")+4, OrderItem.length))
-        price = parseFloat(OrderPrice.substring(OrderPrice.indexOf(": ")+4, OrderPrice.indexOf("coins")-1).replace(/,/g, ''))
+    orderType = itemLore[0]
+    if(typeof orderType == undefined || orderType == undefined) return;
+    if(orderType.indexOf("Buy Order") == -1 && orderType.indexOf("Sell Offer") == -1) return;
+    orderPrice = itemLore[3]
+    orderItem = itemLore[5]
+    if(hoverName == "" || hoverName != orderItem){
+        hoverName = orderItem;
+        hover = true;
+    }
+    if(!hover) return;
+
+    if(orderType.indexOf("Buy Order") == 4 && orderPrice.indexOf("Price per unit") == 6 && orderItem.indexOf("Order: ") == 6){
+        quantity = parseInt(orderItem.substring(orderItem.indexOf(": ")+4, orderItem.indexOf("x")))
+        item = findID(orderItem.substring(orderItem.indexOf("x")+4, orderItem.length))
+        price = parseFloat(orderPrice.substring(orderPrice.indexOf(": ")+4, orderPrice.indexOf("coins")-1).replace(/,/g, ''))
         handleBuyOffer(item, price);
-    }else if(OrderType.indexOf("Sell Offer") == 4 && OrderPrice.indexOf("Price per unit") == 6 && OrderItem.indexOf("Selling: ") == 6){
-        quantity = parseInt(OrderItem.substring(OrderItem.indexOf(": ")+4, OrderItem.indexOf("x")))
-        item = findID(OrderItem.substring(OrderItem.indexOf("x")+4, OrderItem.length))
-        price = parseFloat(OrderPrice.substring(OrderPrice.indexOf(": ")+4, OrderPrice.indexOf("coins")-1).replace(/,/g, ''))
+    }else if(orderType.indexOf("Sell Offer") == 4 && orderPrice.indexOf("Price per unit") == 6 && orderItem.indexOf("Selling: ") == 6){
+        quantity = parseInt(orderItem.substring(orderItem.indexOf(": ")+4, orderItem.indexOf("x")))
+        item = findID(orderItem.substring(orderItem.indexOf("x")+4, orderItem.length))
+        price = parseFloat(orderPrice.substring(orderPrice.indexOf(": ")+4, orderPrice.indexOf("coins")-1).replace(/,/g, ''))
         handleSellOffer(item, price);
     }
 }), () => settings.bzNotif)

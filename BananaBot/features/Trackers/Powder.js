@@ -2,6 +2,7 @@ import { newTime, convertTime, formatDouble, formatInt, registerWhen, setRegiste
 import { GREEN, AQUA, DARK_GREEN, LIGHT_PURPLE, RED } from "../../utils/constants";
 import { data } from "../../utils/variables";
 
+tablist = null;
 holdGem = 0;
 holdMith = 0;
 startMith = 0;
@@ -17,8 +18,10 @@ powdString = ""
 
 const Keybind = new KeyBind("Powder Start/Stop", Keyboard.KEY_NONE)
 const KeybindPause = new KeyBind("Powder Pause/Unpause", Keyboard.KEY_NONE)
+
 Keybind.registerKeyPress(()=>{
     toggle = !toggle;
+    data.locations.powderLoc[2] = toggle;
     if(toggle){
         start = newTime();
         startGem = tabPowder()[0]
@@ -36,6 +39,7 @@ Keybind.registerKeyPress(()=>{
 })
 
 KeybindPause.registerKeyPress(()=>{
+    if(!toggle)return;
     pause = !pause;
     if(pause){
         ChatLib.chat(`${AQUA}Powder Tracker: ${GREEN}Paused`)
@@ -46,8 +50,7 @@ KeybindPause.registerKeyPress(()=>{
         start += (newTime() - pauseStart)
         setRegisters();
     }
-})
-
+});
 //bossbar
 const WitherClass = Java.type('net.minecraft.entity.boss.EntityWither').class;
 
@@ -113,8 +116,8 @@ ${DARK_GREEN}Mithril rate: ${AQUA}${formatDouble(gainedMith/(time/1000)*3600)}
 ${GREEN}2x Powder: ${RED}${doublePowder}
 `
     }
-}).setFps(2), () => toggle && !pause)
+}).setFps(1), () => toggle && !pause)
 
 registerWhen(register("renderOverlay", () =>{
-    Renderer.drawString(powdString, data.powderLoc[0], data.powderLoc[1]);
+    Renderer.drawString(powdString, data.locations.powderLoc[0], data.locations.powderLoc[1]);
 }), () => toggle)

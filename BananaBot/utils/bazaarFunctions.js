@@ -15,8 +15,14 @@ export function setBzPrices(){
       item = bzItems[item];
       if(products[item].buy_summary[0] == undefined || products[item].sell_summary[0] == undefined){
         console.error(`No offers for ${item}`)
-        sellOfferPrice = 0;
-        buyOrderPrice = 0;
+        if(item.includes("CHIMERA") || item.includes("FATAL") || item.includes("DIVINE")){
+          tier = parseInt(item.substring(item.length-1, item.length))-1
+          sellOfferPrice = Math.pow(2, tier)*products[item.substring(0,item.length-1)+"1"].buy_summary[0].pricePerUnit;
+          buyOrderPrice = Math.pow(2, tier)*products[item.substring(0,item.length-1)+"1"].sell_summary[0].pricePerUnit;
+        }else{
+          sellOfferPrice = 0;
+          buyOrderPrice = 0;
+        }
       }else{
         sellOfferPrice = products[item].buy_summary[0].pricePerUnit;
         buyOrderPrice = products[item].sell_summary[0].pricePerUnit;
@@ -30,31 +36,34 @@ export function setBzPrices(){
   })
 }
 
-//searche = uuid, returns item name no spaces
+//searches uuid, returns item name no spaces
+const bzItemsReverseMap = new Map(Object.entries(bzItems).map(([key, value]) => [value, key]));
+
 export function findName(search) {
-  foundItem = search
-  Object.keys(bzItems).forEach((item) =>{
-    if(bzItems[item] == search){
-      foundItem = item;
-    }
-  })
-  return foundItem;
+  return bzItemsReverseMap.get(search) || search;
 }
 
 //finds correct UUID for an item
+const bzItemsMap = new Map(Object.entries(bzItems).map(([key, value]) => [key.toLowerCase().replace(/_/g, " "), value]));
+
 export function findID(search) {
-  foundItem = search;
-  found = false;
-  Object.keys(bzItems).forEach((item) =>{
-      if(item == search){
-        foundItem = bzItems[item];
-        found = true;
-      }else if(item.toLowerCase().indexOf(search.toLowerCase()) != -1 && !found){
-        foundItem = bzItems[item];
-      }
-  })
+  const searchKey = search.toLowerCase().replace(/_/g, " ");
+  if (bzItemsMap.has(searchKey)) {
+    return bzItemsMap.get(searchKey);
+  }
+
+  let foundItem = search;
+  let found = false;
+  bzItemsMap.forEach((value, key) => {
+    if (!found && key.indexOf(searchKey) !== -1) {
+      foundItem = value;
+      found = true;
+    }
+  });
+
   return foundItem;
 }
+
 export function getItems(search) {
   request({
     url: BZ_API,

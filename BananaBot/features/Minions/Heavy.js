@@ -1,5 +1,6 @@
 import { GREEN, GRAY, RED, DARK_RED, DARK_GREEN, AQUA, DARK_GRAY, YELLOW } from '../../utils/constants';
 import { totalMinionSpeed, totalMinions, formatDouble } from "../../utils/functions";
+import { readJson } from '../../utils/functions';
 
 //heavy gabagool craft cost
 const gaba = 576

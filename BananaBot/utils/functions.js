@@ -1,13 +1,14 @@
 import settings from "../settings";
-import { YELLOW, WHITE, BOLD, RED } from "./constants";
+import { data } from "./variables";
+import { YELLOW, WHITE, BOLD, RED, GREEN, AQUA } from "./constants";
 
-//performance stuff
+//performance stuff, registers when a register is activated.
 let registers = [];
 export function registerWhen(trigger, dependency) {
     registers.push([trigger.unregister(), dependency, false]);
 }
 
-// Updates on world or gui change
+//Updates the registers that should be active or not
 export function setRegisters() {
     registers.forEach(trigger => {
         if (trigger[1]() && !trigger[2]) {
@@ -18,6 +19,11 @@ export function setRegisters() {
             trigger[2] = false;
         }
     });
+    data.locations.BIL[2] = settings.BloodIchor;
+    data.locations.TCL[2] = settings.twinClaw;
+    data.locations.ETL[2] = settings.effigyTimer;
+    data.locations.ITL[2] = settings.ItemTimer;
+    data.locations.dailyLoc[2] = settings.dailyDisplay;
 }
 
 //number formats
@@ -29,7 +35,7 @@ export function formatInt(num) {
     return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-//gets player name
+//gets player name from hypixel chat
 export function getPlayerName(name){
     return name.substring(name.indexOf(']')+2, name.length)
 }
@@ -55,6 +61,7 @@ export function totalMinionSpeed() {
     return totalActions;
 }
 
+//function returns total minion speed of user input
 export function totalMinions(){
   const minions = [settings.minionCount1, settings.minionCount2, settings.minionCount3, settings.minionCount4, settings.minionCount5, settings.minionCount6, settings.minionCount7, settings.minionCount8, settings.minionCount9, settings.minionCount10, settings.minionCount11, settings.minionCount12];
   total = 0;
@@ -83,7 +90,7 @@ export function logFactorial(n) {
     return result;
 }
 
-//reads json. reaedJson(./BananaBot/data)
+//function to read only from my folders.
 export function readJson(folder, jsonFile){
     return JSON.parse(FileLib.read(`./BananaBot/${folder}`, jsonFile));
 }
@@ -91,7 +98,7 @@ export function readJson(folder, jsonFile){
 export function writeJson(folder, file, write){
   FileLib.write(`./BananaBot/${folder}`, file, JSON.stringify(write, null, 2))
 }
-
+//saves new data and appends it onto userstats.json
 export function saveData(dataType, newData) {
   const folder = 'data';
   const jsonFile = 'userstats.json';
@@ -136,7 +143,7 @@ export function removeData(dataType, key) {
   FileLib.write(`./BananaBot/${folder}`, jsonFile, JSON.stringify(allData, null, 2));
 }
 
-//time
+//converts the time in miliseconds to d/h/m/s list
 export function convertTime(time){
     seconds = Math.floor(time/1000);
     minutes = Math.floor(seconds / 60);
@@ -144,11 +151,19 @@ export function convertTime(time){
     days = Math.floor(hours / 24);
     return [days, hours%24, minutes%60, seconds%60];
 }
+//returns a better looking time string;
+export function timeString(time, color, color2){
+  if(time[0] <= 0 && time[1] <= 0 && time[2] <= 0 && time[3] <=0) return "";
+  if(time[0] == 0 && time[1] == 0 && time[2] == 0) return `${color}${time[3]} ${color2}secs`;
+  if(time[0] == 0 && time[1] == 0) return `${color}${time[2]} ${color2}mins ${color}${time[3]} ${color2}secs`;
+  if(time[0] == 0) return `${color}${time[1]} ${color2}hrs ${color}${time[2]} ${color2}mins ${color}${time[3]} ${color2}secs`;
+  return `${color}${time[0]} ${color2}days ${color}${time[1]} ${color2}hrs ${color}${time[2]} ${color2}mins ${color}${time[3]} ${color2}secs`
+}
 
 export function newTime(){
    return Date.now();
 }
-
+//gets player date mm/dd/yyyy
 export function getDate(time){
   return new Date(time).toLocaleString();
 }
@@ -159,7 +174,8 @@ export function remainTime(resetTime, lastTime){
   return resetTime*1000 - (newTime() - lastTime);
 }
 
-//sorts dictionary descending
+//sorts dictionary descending depending on the value of the key
+//dict = {"name": 50, "name2": 90}; returns "name2": 90, "name": 50
 export function sortDictDsc(dictionary) {
     const sortedArray = Object.entries(dictionary).sort((a, b) => b[1] - a[1]);
     const sortedDict = {};
@@ -177,57 +193,3 @@ export function sortDictAsc(dictionary) {
     });
     return sortedDict;
 }
-  
-//help message
-export const helpMsg = 
-`${RED}${BOLD}Mod Related:
-${YELLOW}${BOLD}/banana or /bb ${WHITE}to open the settings menu in order to edit data values.
-${YELLOW}${BOLD}/bbgui ${WHITE}to change the locations of where the text should be displayed. Scaling is a Work In Progress.
-
-${RED}${BOLD}Minions:
-${YELLOW}${BOLD}/hyper ${WHITE}to calculate minion profit per day/hypergolic craft (must input minion speeds in /banana).
-${YELLOW}${BOLD}/heavy ${WHITE}to calculate profit from using heavy gabagool fuel (must input minion speeds in /banana).
-${YELLOW}${BOLD}/minion ${WHITE}to see minion calculations.
-${YELLOW}${BOLD}/minstats <min speed> ${WHITE}to see inferno minion odds for a single minion.
-${YELLOW}${BOLD}/gaba ${WHITE}to calculate profit from crafting hypergolics.
-${YELLOW}${BOLD}/amal ${WHITE}to show craft cost of amalgamted crimsonite.
-${YELLOW}${BOLD}/speed <minion><tier>${WHITE}to find the speed of a minion.
-
-${RED}${BOLD}Money Per Hour Calcs:
-${YELLOW}${BOLD}/<blaze/eman/rev/sven/tara> ${WHITE}to show theoretical money per hour of each slayer.
-${YELLOW}${BOLD}/copper, /bits ${WHITE}to show the exchange rate of coins to a different currency.
-${YELLOW}${BOLD}/farm ${WHITE}to calculate money/hr farming each crop with your input of jacob's event data. This is while using bazaar data.
-${YELLOW}${BOLD}/farmnpc ${WHITE}to calculate money/hr farming each crop with your input of jacob's event data. This is using NPC sell price data.
-${YELLOW}${BOLD}/composter ${WHITE}to show profit per hour/day with composter. Input composter ugprades in /bb.
-
-${RED}${BOLD}Statistics:
-${YELLOW}${BOLD}/binom ${WHITE}to show binomial distribution statistics.
-${YELLOW}${BOLD}/calc "x" (*/+-%) "y" ${WHITE}to do simple math like x * y.
-
-${RED}${BOLD}Bazaar/Auction Related stuff:
-${YELLOW}${BOLD}/itemcalc or /ic <args> ${WHITE}to display craft cost of an item.
-${YELLOW}${BOLD}/bzlist ${WHITE}to display items being tracked.
-${YELLOW}${BOLD}/clear <itemName> ${WHITE}to reset bazaar notifier database tracker. You can get itemName from /bzlist.
-${YELLOW}${BOLD}/ubz or /uah ${WHITE}to manually update bazaar/auction prices.
-${YELLOW}${BOLD}/dailycoin or /dc ${WHITE}to see how much daily money you make a day.
-
-${RED}${BOLD}Party:
-${YELLOW}${BOLD}/resetparty ${WHITE}to reset any bad things that happen during dungeon rejoins.
-${YELLOW}${BOLD}/joinlist <add/remove/show> ${WHITE}to auto join list only parties (if turned on in /banana).
-
-${RED}${BOLD}Trackers:
-${YELLOW}${BOLD}Turn on/off trackers in minecraft controls.
-${YELLOW}${BOLD}/powder or /pow <save/remove/rm> ${WHITE}to save/remove tracked powder.
-${YELLOW}${BOLD}/skill or /sk <start/end/reset> ${WHITE}to start skill exp/hr tracker.
-${YELLOW}${BOLD}/bzlist ${WHITE}to show items inside bz notif. ${YELLOW}${BOLD}/clear <item name> ${WHITE}to remove from this list.
-${YELLOW}${BOLD}/dailyreset or /dr (cake, hiker, visitor, matriarch, eyedrop, feeder, remind) ${WHITE}to manually reset dailies if something messes up.
-${YELLOW}${BOLD}/remindme or /remind or /rme <name> <day hour min sec> ${WHITE}to set yourself a timer to remind yourself of something!
-
-${RED}${BOLD}Damage Stuff:
-${YELLOW}${BOLD}/dmg (on/off) ${WHITE}to print damage in chat.
-${YELLOW}${BOLD}/rend ${WHITE}to display most rend multipliers and how the damage calculation works.
-${YELLOW}${BOLD}/damage ${WHITE}to display damage multiplier differences.
-
-${RED}${BOLD}Message From Banana:
-${YELLOW}${BOLD}Data should auto save after input, but if it seems like it does not do /ct load to ensure it does. Otherwise bug report it. (it wont be fixed)
-`

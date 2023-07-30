@@ -28,10 +28,7 @@ function timerOverlay() {
         {
             title = `${RED}${BOLD}Blood Ichor ${time}`
             Renderer.scale(settings.BIScaleX, settings.BIScaleY)
-            Renderer.drawString(title, data.BIL[0], data.BIL[1]);
+            Renderer.drawString(title, data.locations.BIL[0], data.locations.BIL[1]);
         }
-        //Renderer.drawString(time, data.TCL[0], data.TCL[1]); // Render the timer text
     });
 }
-
-//§c19.5s

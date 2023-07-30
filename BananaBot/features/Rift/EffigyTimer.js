@@ -24,6 +24,6 @@ function timerOverlay() {
         const xPos = settings.effX; // Adjust the X position as desired
         const yPos = settings.effY + index * 10; // Adjust the Y position as desired
 
-        Renderer.drawString(title, data.ETL[0], data.ETL[1]); // Render the timer text
+        Renderer.drawString(title, data.locations.ETL[0], data.locations.ETL[1]); // Render the timer text
     });
 }

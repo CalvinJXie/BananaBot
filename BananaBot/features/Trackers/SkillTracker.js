@@ -67,7 +67,7 @@ ${GREEN}Skill Exp Rate: ${AQUA}${formatDouble(skill.gain/(time/1000)*3600)} ${GR
 }).setFps(2), () => toggle)
 
 registerWhen(register("renderOverlay", () =>{ 
-    Renderer.drawString(skillString, data.STL[0], data.STL[1])
+    Renderer.drawString(skillString, data.locations.STL[0], data.locations.STL[1])
 }), () => toggle)
 
 register("command", (args) => {
@@ -97,4 +97,5 @@ register("command", (args) => {
             ChatLib.chat(`${GREEN}/sk (start, end) also works`)
             break;
     }
+    data.locations.STL[2] = toggle;
 }).setName("skill").setAliases("sk", settings.skillAlias)

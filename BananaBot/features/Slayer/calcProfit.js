@@ -16,8 +16,8 @@ function calcSlayer(ah, bz, drops, slayer, slayerItem){
     ChatLib.chat(`${RED}Prices:`)
     Object.keys(ah).forEach((item)=>{
         if(ahPrice[item]){
-            ChatLib.chat(`${YELLOW}${item}: ${GREEN}${formatDouble(ahPrice[item].price)}`)
-            moneyPerDrop[item] = ahPrice[item].price * drops[item]
+            ChatLib.chat(`${YELLOW}${item}: ${GREEN}${formatDouble(ahPrice[item])}`)
+            moneyPerDrop[item] = ahPrice[item] * drops[item]
         }else{
             ChatLib.chat(`${YELLOW}Found no active auctions for ${item}. If there are multiple items that do not seem correct do /uah.`)
         }
@@ -26,23 +26,22 @@ function calcSlayer(ah, bz, drops, slayer, slayerItem){
         ChatLib.chat(`${YELLOW}${findName(item)}: ${GREEN}${formatDouble(priceSellOffer[item])}`)
         moneyPerDrop[item] = priceSellOffer[item] * drops[item]
     })
-
     total = 0;
-            //get total coins
-            Object.keys(moneyPerDrop).forEach((item) =>{
-                total += moneyPerDrop[item]
-            })
-            //chat messages
-            ChatLib.chat(`\n${RED}Drop Rates:`)
-            Object.keys(drops).forEach((item) =>{
-                if(item != slayerItem){
-                    ChatLib.chat(`${AQUA}${item.toLowerCase().replace(/_/g," ")} ${YELLOW}drops every ${GREEN}${formatDouble(1/drops[item])} ${YELLOW}bosses`)
-                }
-            })
-            ChatLib.chat(`\n${RED}${slayer} Slayer:`)
-            ChatLib.chat(`${YELLOW}With ${AQUA}${settings.mf} ${YELLOW}Magic Find, ${GREEN}${kph} ${YELLOW}kills per hour, and ${RED}${cost} ${YELLOW}slayer cost:`)
-            ChatLib.chat(`${YELLOW}Total Coins per boss kill: ${GREEN}${formatDouble(total-cost)}`)
-            ChatLib.chat(`${YELLOW}Total Coins Per Hour: ${GREEN}${formatDouble(total*kph - kph*cost)}\n`)
+    //get total coins
+    Object.keys(moneyPerDrop).forEach((item) =>{
+        total += moneyPerDrop[item]
+    })
+    //chat messages
+    ChatLib.chat(`\n${RED}Drop Rates:`)
+    Object.keys(drops).forEach((item) =>{
+        if(item != slayerItem){
+            ChatLib.chat(`${AQUA}${item.toLowerCase().replace(/_/g," ")} ${YELLOW}drops every ${GREEN}${formatDouble(1/drops[item])} ${YELLOW}bosses`)
+        }
+    })
+    ChatLib.chat(`\n${RED}${slayer} Slayer:`)
+    ChatLib.chat(`${YELLOW}With ${AQUA}${settings.mf} ${YELLOW}Magic Find, ${GREEN}${kph} ${YELLOW}kills per hour, and ${RED}${cost} ${YELLOW}slayer cost:`)
+    ChatLib.chat(`${YELLOW}Total Coins per boss kill: ${GREEN}${formatDouble(total-cost)}`)
+    ChatLib.chat(`${YELLOW}Total Coins Per Hour: ${GREEN}${formatDouble(total*kph - kph*cost)}\n`)
 }
 
 register("command", () => {

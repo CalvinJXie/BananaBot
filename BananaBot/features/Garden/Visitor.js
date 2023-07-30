@@ -3,13 +3,10 @@ import { findID, findName } from "../../utils/bazaarFunctions";
 import Lore from "../../../Lore";
 import { formatDouble, registerWhen, readJson } from "../../utils/functions";
 
-const barrier = `§8§m                                                        `
-var price = readJson("data", "bazaarPrice.json").price.sellOffer;
+const barrier = `§8§m                                                        `;//barrier to separate my lore
+hover = false;//tracks if hovered once
 
-registerWhen(register("step", ()=>{
-    price = readJson("data", "bazaarPrice.json").price.sellOffer
-}).setDelay(900), ()=>settings.gardenVP)
-
+//this function takes in item lore and item/quantities and then appends the Lore to the item.
 function displayLore(l, tool, ctc, item1, quant1, item2, quant2){
     if(!item2 || item2 === ''){//item2 not provided
         if(ctc<=parseInt(settings.ctcRatio)*1000){
@@ -38,11 +35,16 @@ function displayLore(l, tool, ctc, item1, quant1, item2, quant2){
             Lore.append(tool, ctcString, true);
         }
     }
+    hover = false;
 }
 registerWhen(register('itemToolTip', (l, tool)=>{
-    visitorCheck = l[0];
-    if(typeof visitorCheck == 'undefined') return;
-    if(visitorCheck.indexOf("Accept Offer") == -1) return;
+    if(typeof l[0] == 'undefined') return;
+    if(l[0].indexOf("Accept Offer") == -1)return;
+    if(!l[l.length-1].includes("Copper Ratio:")){
+        hover = true;
+    }
+    if(!hover) return;
+    price = readJson("data", "bazaarPrice.json").price.sellOffer
     offer1 = l[2];
     offer2 = l[3];
     copperOffer = l[7];

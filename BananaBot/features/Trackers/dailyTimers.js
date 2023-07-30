@@ -3,13 +3,13 @@ import { newTime, convertTime, remainTime, registerWhen } from "../../utils/func
 import { YELLOW, GREEN, GOLD, RED, BOLD, AQUA } from "../../utils/constants";
 import settings from "../../settings";
 
-remindStart = 0;
-remindName = "";
-displayString = "";
-visitTime = 0;
-nextVisit = 0;
-visitorTime = 0;
+remindStart = 0;//start of the remind
+remindName = "";//holds the remind name
+displayString = "";//string to hold every single tracked display to render
+visitTime = remainTime(720, data.daily.visitor);//stores the visit time in tab
+tablist = null;
 
+//returns the time till next visitor in seconds
 function getVisitorTime(){
     tablist = TabList.getNames();
     if(tablist != null){
@@ -28,11 +28,11 @@ function getVisitorTime(){
     }
     return visitorTime;
 }
-
+//takes time till reset and the start time. Returns true if no data or if player's time has reset and the tracker is useable again.
 function checkTime(time, data){
     return newTime()/1000 - data/1000 >= time || data == 0;
 }
-
+//returns a string to display
 function timeString(name, time){
     if(time[0] <= 0 && time[1] <= 0 && time[2] <= 0 && time[3] <=0) return `\n${GOLD}${name}: ${RED}${BOLD}NOW`;
     if(time[0] == 0 && time[1] == 0 && time[2] == 0) return `\n${GOLD}${name}: ${GREEN}${time[3]} ${YELLOW}secs`;
@@ -91,7 +91,7 @@ registerWhen(register("step", () =>{
         visitTime = getVisitorTime()*1000;
         visitorTimer = convertTime(visitTime);
     }else{
-        visitTime-=1000;
+        visitTime -= 1000;
         visitorTimer = convertTime(visitTime)
     }
     fullstring = `${AQUA}Timers:`
@@ -106,7 +106,7 @@ registerWhen(register("step", () =>{
 }).setFps(1), () => settings.dailyDisplay)
 
 registerWhen(register("renderOverlay", () =>{
-    Renderer.drawString(displayString, data.dailyLoc[0], data.dailyLoc[1])
+    Renderer.drawString(displayString, data.locations.dailyLoc[0], data.locations.dailyLoc[1])
 }), () => settings.dailyDisplay)
 
 register("command", (args)=>{

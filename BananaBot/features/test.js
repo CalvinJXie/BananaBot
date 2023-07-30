@@ -1,5 +1,4 @@
 import request from "../../requestV2";
-import { readJson, writeJson } from "../utils/functions";
 import { data } from "../utils/variables";
 import { setPages, updateAhPrices } from "../utils/auctionFunctions";
 

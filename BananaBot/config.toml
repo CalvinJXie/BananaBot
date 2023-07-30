@@ -33,6 +33,9 @@
 		track_caducous_feeder = false
 		track_capsaicin_eyedrops = true
 
+	[trackers._bestiary]
+		bestiary = false
+
 [nether]
 
 	[nether.kuudra]
@@ -162,7 +165,7 @@
 
 	[minion_data.minion_3]
 		minion_3_speed = "12.9"
-		minion_3_amount = "18"
+		minion_3_amount = "19"
 
 	[minion_data.minion_2]
 		minion_2_amount = "7"
@@ -238,8 +241,11 @@
 
 [economy]
 
+	[economy.item_cost]
+		display_raw_craft_cost = true
+
 	[economy.auto]
-		auto_check_prices = true
+		auto_check_prices = false
 
 	[economy.search_loop]
 		item_price = "2"
@@ -470,7 +476,7 @@
 
 	[party.party]
 		custom_party_message = ""
-		party_commands = false
+		party_commands = true
 		custom_party_name = ""
 
 [statistics]
