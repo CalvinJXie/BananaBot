@@ -55,7 +55,7 @@ ${YELLOW}${BOLD}/binom ${WHITE}to show binomial distribution statistics.
 ${YELLOW}${BOLD}/calc "x" (*/+-%) "y" ${WHITE}to do simple math like x * y.
 
 ${RED}${BOLD}Bazaar/Auction Related stuff:
-${YELLOW}${BOLD}/itemcalc or /ic <args> ${WHITE}to display craft cost of an item.
+${YELLOW}${BOLD}/itemcost or /ic <args> ${WHITE}to display craft cost of an item.
 ${YELLOW}${BOLD}/bzlist ${WHITE}to display items being tracked.
 ${YELLOW}${BOLD}/clear <itemName> ${WHITE}to reset bazaar notifier database tracker. You can get itemName from /bzlist.
 ${YELLOW}${BOLD}/ubz or /uah ${WHITE}to manually update bazaar/auction prices.

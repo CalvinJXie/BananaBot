@@ -10,6 +10,7 @@ export let data = new PogObject("BananaBot", {
         "powderLoc": [10, 90, false], //Powder Tracker Location
         "STL": [10, 200, false], //Skill Tracker Location
         "MTL": [10, 120, false], //Mob Tracker Location
+        "KPL": [100, 100, false], //Kuudra Profit Location
     },
     "BazaarNotif": {},
     "Party":{"Leader":"", "Members":[]},

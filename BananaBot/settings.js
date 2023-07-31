@@ -347,12 +347,20 @@ class settings {
     slayerKPH = "360"
 
     @SwitchProperty({
-        name: "Auto Check prices",
-        description: `enable/disble to automatically update calculation prices over time.`,
+        name: "Auto Update Bazaar",
+        description: `Automatically updates bazaar prices every 10 minutes. Really good performance. /ubz if you want to manually u pdate.`,
         category: "Economy",
         subcategory: "Auto"
     })
-    autoUpdate = true;
+    autoUpdateBz = true;
+
+    @SwitchProperty({
+        name: "Auto Check prices",
+        description: `Automatically updates auction house prices every hour. This is really bad performance. /uah if you want to manually update.`,
+        category: "Economy",
+        subcategory: "Auto"
+    })
+    autoUpdateAh = true;
 
     @SwitchProperty({
         name: "Display Raw Craft Cost",

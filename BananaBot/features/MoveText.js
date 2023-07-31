@@ -2,7 +2,7 @@ import { data } from "../utils/variables";
 import { GOLD, BOLD, AQUA, RED, GOLD, GREEN, YELLOW } from "../utils/constants";
 
 export const moveText = new Gui();
-let selected = ""
+let selected = "";
 
 //add in same key and example text for each new location
 locString = {
@@ -13,11 +13,12 @@ locString = {
     "dailyLoc": `${GOLD}${BOLD}DAILY TIMERS HERE`,
     "powderLoc": `${GREEN}${BOLD}POWDER TIMERS HERE`,
     "STL": `${GOLD}${BOLD}SKILL TRACKERS HERE`,
-    "MTL": `${AQUA}${BOLD}MOB TRACKERS HERE`
+    "MTL": `${AQUA}${BOLD}MOB TRACKERS HERE`,
+    "KPL": `${GOLD}${BOLD}KUUDRA PROFIT HERE`
 }
 
-function inBounds(x, y, textX, textY) {
-    return (x >= textX && x <= textX + 80) && (y >= textY && y <= textY + 20); 
+function inBounds(x, y, textX, textY, str) {
+    return (x >= textX && x <= textX + 100) && (y >= textY && y <= textY + 10); 
 }
 
 register("renderOverlay", () => {
@@ -43,10 +44,18 @@ register("dragged", (dx, dy, x, y) => {
 register("GuiMouseClick", (x, y) => {
     if (!moveText.isOpen()) return;
     Object.keys(data.locations).forEach((loc)=>{
-        if(inBounds(x,y, data.locations[loc][0], data.locations[loc][1])){
+        if(inBounds(x,y, data.locations[loc][0], data.locations[loc][1], loc)){
             selected = loc;
         }
     })
 });
 
-register("command", () =>moveText.open()).setName("bbgui");
+register("GuiMouseRelease", (x, y) => {
+    if (!moveText.isOpen()) return;
+    selected = "";
+});
+
+register("command", () =>{
+    selected = "";
+    moveText.open();
+}).setName("bbgui");

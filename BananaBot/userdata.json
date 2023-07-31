@@ -38,7 +38,7 @@
         "MTL": [
             3,
             88,
-            false
+            true
         ]
     },
     "BazaarNotif": {},
@@ -55,13 +55,13 @@
         "lhxseven"
     ],
     "daily": {
-        "eyedrop": 1690670616118,
+        "eyedrop": 1690757258657,
         "matriarch": 1689798253741,
         "feeder": 1689974834381,
         "cake": 1690670782756,
         "hiker": 1690130157158,
-        "visitor": 1690687860428
+        "visitor": 1690828793632
     },
-    "world": "Garden",
-    "totalPages": 57
+    "world": "",
+    "totalPages": 54
 }

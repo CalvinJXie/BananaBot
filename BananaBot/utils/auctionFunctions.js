@@ -1,100 +1,97 @@
 import request from "../../requestV2";
-import { readJson, writeJson } from "./functions";
+import Promise from "../../PromiseV2";
+import { readJson, romanToArabic, writeJson } from "./functions";
 import { data } from "./variables";
 
-export function setPages(){
+const ahDict = readJson("data", "auction.json")["items"];
+
+export function setPages() {
   const pages = `https://api.hypixel.net/skyblock/auctions`;
-  request({
-    url: pages,
-    json: true
-  }).then((response) => {
-      data.totalPages = response.totalPages
-      console.log(`Updated Pages: ${data.totalPages}`)
-  }).catch((error)=>{
-    console.error(error)
-  })
-}
 
-const ahDict = readJson("data", "auction.json")["items"]
-
-function findMinPrice(dict) {
-  Object.keys(dict).forEach((item)=>{
-      let minPrice = Number.MAX_SAFE_INTEGER;
-      let minUUID = null;
-      Object.keys(dict[item]).forEach((uuid)=>{
-          const price = dict[item][uuid];
-          if (price < minPrice) {
-              minPrice = price;
-              minUUID = uuid;
-          }
+  return new Promise((resolve, reject) => {
+    request({
+      url: pages,
+      json: true
+    })
+      .then((response) => {
+        data.totalPages = response.totalPages;
+        console.log(`Updated Pages: ${data.totalPages}`);
+        resolve();
       })
-      priceDict[item] = {"uuid": minUUID, "price": minPrice}
-  })
-  writeJson("data", "auctionPrice.json", priceDict);
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+  });
 }
 
-export function updateAhPrices(){
-    newDict = {}
-    pagesChecked = 0;
-    for(let p = 0;p<data.totalPages;p++){
-        const AH = 'https://api.hypixel.net/skyblock/auctions?page='+p;
-        request({
-            url: AH,
-            json:true
-        }).then((response)=>{
-            let auctions = response.auctions;
-            for(let i = 0;i<auctions.length;i++){
-                let auction = auctions[i];
-                if(auction.bin){
-                    itemName = auction.item_name.toLowerCase();
-                    Object.keys(ahDict).forEach((item)=>{     
-                        if(itemName.includes(item.toLowerCase())){
-                            if(newDict[item] == undefined || newDict[item]>auction.starting_bid){
-                                newDict[item] = auction.starting_bid;
-                            }
-                        }
-                    })
-                }
-            }
-            pagesChecked++;
-            if(pagesChecked == data.totalPages){
-                console.log(`Finished searching ${pagesChecked} pages from auction house`)
-                writeJson("data", "auctionPrice.json", newDict);
-            }
-        }).catch((error) =>{
-            console.error(`Failed on page ${p}`)
-            console.error(JSON.stringify(error, false,2))
-            if(pagesChecked == data.totalpages){
-                setPages();
-            }
-            ChatLib.chat("An error occured while searching auction please try again.")
-        })
-    }
-}
+export function updateAhPrices() {
+  const newDict = {};
 
-/*
-lore = ahDict[item].lore
-if(lore != undefined){
-    if(lore != undefined && lore[1]){
-        if(auction.item_lore.toLowerCase().includes(lore[1].toLowerCase()) && auction.item_lore.toLowerCase().includes(lore[0].toLowerCase())){
-            loreName = `${lore[0]} ${lore[1]} ${item}`
-            if(newDict[loreName]){
-                newDict[loreName][auction.uuid] = auction.starting_bid;
-            }else{
-                newDict[loreName] = {[auction.uuid]:auction.starting_bid};
+  function processPage(page) {
+    const AH = 'https://api.hypixel.net/skyblock/auctions?page=' + page;
+    return request({ url: AH, json: true });
+  }
+
+  function processAuction(auction, item, loreAttributes, godAttributes) {
+    if (auction.bin) {
+      if (loreAttributes) {
+        loreAttributes.forEach((attr) => {
+          const regex = new RegExp(attr + ' [IVX]+', "i");
+          const lore = auction.item_lore;
+          const match = lore.match(regex);
+          if (match) {
+            const attrTier = romanToArabic(match[0].substring(attr.length + 1, match[0].length));
+            const modifiedItem = `${attr} ${item}`;
+            const pricePerTier = auction.starting_bid / Math.pow(2, attrTier - 1);
+            if (newDict[modifiedItem] === undefined || newDict[modifiedItem] > pricePerTier) {
+              newDict[modifiedItem] = pricePerTier;
             }
-        }
-    }else{
-        if(auction.item_lore.toLowerCase().includes(lore[0].toLowerCase())){
-            loreName = `${lore[0]} ${item}`
-            if(newDict[loreName]){
-                newDict[loreName][auction.uuid] = auction.starting_bid;
-            }else{
-                newDict[loreName] = {[auction.uuid]:auction.starting_bid};
+          }
+        });
+      } else if (godAttributes) {
+        Object.entries(godAttributes).forEach(([gr, attrs]) => {
+          const [attr1, attr2] = attrs;
+          const lore = auction.item_lore;
+          if (lore.includes(attr1) && lore.includes(attr2)) {
+            const grString = `${attr1} ${attr2} ${item}`;
+            if (newDict[grString] === undefined || newDict[grString] > auction.starting_bid) {
+              newDict[grString] = auction.starting_bid;
             }
-        }
+          }
+        });
+      } else if (newDict[item] === undefined || newDict[item] > auction.starting_bid) {
+        newDict[item] = auction.starting_bid;
+      }
     }
-}else{
-    
+  }
+
+  setPages()
+    .then(() => {
+      const pageRequests = [];
+      for (let p = 0; p < data.totalPages; p++) {
+        pageRequests.push(processPage(p));
+      }
+      return Promise.all(pageRequests);
+    })
+    .then((responses) => {
+      for (const response of responses) {
+        const auctions = response.auctions;
+        for (const auction of auctions) {
+          Object.entries(ahDict).forEach(([item, attributes]) => {
+            const loreAttributes = attributes.lore;
+            const godAttributes = attributes.god;
+            if (auction.item_name.toLowerCase().includes(item.toLowerCase())) {
+              processAuction(auction, item, loreAttributes, godAttributes);
+            }
+          });
+        }
+      }
+      console.log(`Finished searching ${data.totalPages} pages from the auction house`);
+      writeJson("data", "auctionPrice.json", newDict);
+    })
+    .catch((error) => {
+      console.error("An error occurred while processing auctions:");
+      console.error(JSON.stringify(error, false, 2));
+    });
 }
-*/

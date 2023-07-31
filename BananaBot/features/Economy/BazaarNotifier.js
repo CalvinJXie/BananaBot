@@ -1,7 +1,7 @@
 import request from "../../../requestV2";
 import { data } from "../../utils/variables";
 import settings from "../../settings";
-import { YELLOW, BOLD, GREEN, RED } from "../../utils/constants";
+import { YELLOW, BOLD, GREEN, RED, LOGO } from "../../utils/constants";
 import { formatDouble, registerWhen } from "../../utils/functions";
 import { findName, findID } from "../../utils/bazaarFunctions";
 
@@ -144,13 +144,15 @@ registerWhen(register("step", () =>{
 
 function clearDB(clear){
     if(clear == "all" || clear == ''){
-        Object.keys(data.BazaarNotif).forEach((item) =>{
-            delete data.BazaarNotif[item]
-        })
-        ChatLib.chat(`${YELLOW}${BOLD}Cleared entire bazaar database`)
+        if(Object.keys(data.BazaarNotif).length>0){
+            Object.keys(data.BazaarNotif).forEach((item) =>{
+                delete data.BazaarNotif[item]
+            })
+            ChatLib.chat(`${LOGO}${YELLOW}${BOLD}Cleared entire bazaar database`)
+        }
     }else{
         delete data.BazaarNotif[clear]
-        ChatLib.chat(`${YELLOW}${BOLD}Cleared ${clear} from bazaar database`)
+        ChatLib.chat(`${LOGO}${YELLOW}${BOLD}Cleared ${clear} from bazaar database`)
     }
 }
 

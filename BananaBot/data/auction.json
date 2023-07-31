@@ -89,6 +89,599 @@
 
         "Bite Rune":{},
         "Tarantula Talisman":{},
-        "Digested Mosquito":{}
+        "Digested Mosquito":{},
+
+        "Wheel of Fate":{},
+        "Aurora Staff":{},
+        "Hollow Wand":{},
+        "Attribute Shard":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience",
+
+                "Blazing Fortune",
+                "Fishing Experience",
+                "Trophy Hunter",
+                "Double Hook",
+                "Hunter",
+                "Fisherman",
+                "Infection",
+                "Fishing Speed",
+
+                "Warrior",
+                "Deadeye",
+                "Attack Speed",
+                "Life Recovery",
+                "Combo",
+                "Midas Touch",
+                "Elite",
+                "Mana Steal",
+                "Blazing",
+                "Undead",
+                "Arachno",
+                "Ignition"
+            ]
+        },
+        "Molten Necklace":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Dominance", "Speed"],
+                "roll2":["Veteran", "Vitality"],
+                "roll3":["Dominance", "Vitality"],
+                "roll4":["Mana Pool", "Mana Regeneration"]
+            }
+        },
+        "Molten Cloak":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Dominance", "Speed"],
+                "roll2":["Veteran", "Vitality"],
+                "roll3":["Dominance", "Vitality"],
+                "roll4":["Mana Pool", "Mana Regeneration"],
+                "roll5":["Magic Find", "Veteran"]
+            }
+        },
+        "Molten Belt":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Dominance", "Speed"],
+                "roll2":["Veteran", "Vitality"],
+                "roll3":["Dominance", "Vitality"],
+                "roll4":["Magic Find", "Veteran"]
+            }
+        },
+        "Molten Bracelet":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Dominance", "Speed"],
+                "roll2":["Veteran", "Vitality"],
+                "roll3":["Dominance", "Vitality"],
+                "roll4":["Magic Find", "Veteran"]
+            }
+        },
+        "Crimson Helmet":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Magic Find", "Veteran"]
+            }
+        },
+        "Crimson Chestplate":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Magic Find", "Veteran"],
+                "roll2":["Vitality", "Veteran"]
+            }
+        },
+        "Crimson Leggings":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Magic Find", "Veteran"],
+                "roll2":["Vitality", "Veteran"]
+            }
+        },
+        "Crimson Boots":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Magic Find", "Veteran"],
+                "roll2":["Vitality", "Veteran"]
+            }
+        },
+        "Aurora Helmet":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Mana Pool", "Mana Regeneration"]
+            }
+        },
+        "Aurora Chestplate":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Mana Pool", "Mana Regeneration"],
+                "roll2":["Mana Regeneration", "Veteran"]
+            }
+        },
+        "Aurora Leggings":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Mana Pool", "Mana Regeneration"],
+                "roll2":["Mana Regeneration", "Veteran"]
+            }
+        },
+        "Aurora Boots":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Mana Pool", "Mana Regeneration"],
+                "roll2":["Mana Regeneration", "Veteran"]
+            }
+        },
+        "Terror Helmet":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Dominance", "Vitality"]
+            }
+        },
+        "Terror Chestplate":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Dominance", "Vitality"]
+            }
+        },
+        "Terror Leggings":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Dominance", "Vitality"]
+            }
+        },
+        "Terror Boots":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ],
+            "god":{
+                "roll1":["Dominance", "Vitality"]
+            }
+        },
+        "Fervor Helmet":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ]
+        },
+        "Fervor Chestplate":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ]
+        },
+        "Fervor Leggings":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ]
+        },
+        "Fervor Boots":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ]
+        },
+        "Hollow Helmet":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ]
+        },
+        "Hollow Chestplate":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ]
+        },
+        "Hollow Leggings":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ]
+        },
+        "Hollow Boots":{
+            "lore":[
+                "Veteran", 
+                "Magic Find", 
+                "Dominance", 
+                "Fortitude", 
+                "Life Regeneration", 
+                "Lifeline", 
+                "Vitality", 
+                "Mana Pool", 
+                "Mana Regeneration", 
+                "Breeze", 
+                "Speed", 
+                "Arachno Resistance", 
+                "Blazing Resistance", 
+                "Ender Resistance", 
+                "Undead Resistance", 
+                "Experience"
+            ]
+        }
     }
 }

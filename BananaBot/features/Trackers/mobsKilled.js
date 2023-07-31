@@ -1,4 +1,4 @@
-import { AQUA, WHITE, GREEN, RED, GOLD } from "../../utils/constants";
+import { AQUA, WHITE, GREEN, RED, GOLD, YELLOW } from "../../utils/constants";
 import { registerWhen, setRegisters } from "../../utils/functions";
 import { data } from "../../utils/variables";
 import { convertTime, timeString, formatDouble } from "../../utils/functions";
@@ -70,17 +70,18 @@ registerWhen(register("step", ()=>{
         oldKill = newKill;
     }else if(oldKill != newKill){//if book of stats applied
         totalKills += newKill-oldKill;
+        if(goal>0){
+            goal-= newKill-oldKill;
+        }
         oldKill = newKill;
     }
     time = convertTime(elapsedTime*1000);
     timeStr = timeString(time, WHITE, GOLD);
     killString = `${AQUA}Total Kills: ${WHITE}${totalKills}
 ${AQUA}Time Elapsed: ${timeStr}
-${AQUA}Mobs per hour: ${WHITE}${formatDouble(totalKills/elapsedTime*3600)}`
-    if(goalKill){
-        killString += `\n${AQUA}Kills remaining: ${WHITE}${goal - totalKills}
-${AQUA}ETA: ${timeString(convertTime(1000*((goal-totalKills)/(totalKills/elapsedTime))), WHITE, GOLD)}`
-    }
+${AQUA}Mobs per hour: ${WHITE}${formatDouble(totalKills/elapsedTime*3600)}
+${AQUA}Kills remaining: ${WHITE}${goal}
+${AQUA}ETA: ${timeString(convertTime(1000*(goal/(totalKills/elapsedTime))), WHITE, GOLD)}`
 }).setDelay(1),()=> (toggle && !pause));
 
 registerWhen(register("renderOverlay",()=>{
@@ -89,9 +90,5 @@ registerWhen(register("renderOverlay",()=>{
 
 register("command", (args)=>{
     goalKill = true;
-    if(totalKills>0){
-        goal = totalKills + args;
-    }else{
-        goal = args;
-    }
+    goal = args;
 }).setName("killset").setAliases("ks")

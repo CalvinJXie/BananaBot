@@ -26,6 +26,33 @@ export function setRegisters() {
     data.locations.dailyLoc[2] = settings.dailyDisplay;
 }
 
+export function romanToArabic(roman) {
+  const numerals = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6, VII: 7, VIII: 8, IX: 9, X: 10 };
+  return numerals[roman];
+}
+
+
+export function arabicToRoman(number) {
+  if (typeof number !== 'number' || isNaN(number) || number < 1 || number > 10 || !Number.isInteger(number)) {
+    throw new Error(`Invalid input. The number ${number} must be an integer between 1 and 10.`);
+  }
+
+  const romanNumerals = {
+    1: 'I',
+    2: 'II',
+    3: 'III',
+    4: 'IV',
+    5: 'V',
+    6: 'VI',
+    7: 'VII',
+    8: 'VIII',
+    9: 'IX',
+    10: 'X',
+  };
+
+  return romanNumerals[number];
+}
+
 //number formats
 export function formatDouble(num){
     return (Math.round(num*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

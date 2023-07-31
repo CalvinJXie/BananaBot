@@ -1,5 +1,5 @@
 import { findID, findName } from "../../utils/bazaarFunctions";
-import { YELLOW, GREEN, RED, GOLD } from "../../utils/constants";
+import { YELLOW, GREEN, RED, GOLD, LOGO, WHITE } from "../../utils/constants";
 import { formatDouble, readJson } from "../../utils/functions";
 
 function recipeCost(item){
@@ -20,6 +20,9 @@ register("command", (...args) => {
         search = findID(`${args[0]} ${args[1]}`)
     }else if(args[0]){
         search = findID(args[0])
+    }else{
+        search = undefined;
+        ChatLib.chat(`${LOGO}${YELLOW}/ic <item> ${WHITE}to display bazaar craft flips.`)
     }
     if(itemRecipes[search] != undefined){
         recipeCost(search);

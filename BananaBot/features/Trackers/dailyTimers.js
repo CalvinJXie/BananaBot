@@ -11,6 +11,8 @@ tablist = null;
 
 //returns the time till next visitor in seconds
 function getVisitorTime(){
+    visitorTime = remainTime(720, data.daily.visitor);
+    if(data.world != "Garden") return;
     tablist = TabList.getNames();
     if(tablist != null){
         visit = tablist.find((tab)=> tab.indexOf("Next Visitor:") != -1);
@@ -25,6 +27,8 @@ function getVisitorTime(){
                 visitorTime = parseInt(nextVisit.substring(nextVisit.indexOf('m')+1, nextVisit.indexOf('s')))
             }
         }
+    }else{
+        ChatLib.chat("no tablist found")
     }
     return visitorTime;
 }
@@ -147,9 +151,3 @@ register("command", (...args)=>{
         ChatLib.chat("invalid value please do /remindme or /remind or /rme <name> <day hour min sec>. Ex: /remindme test 0 3 0 0, this will remind you of a test in 3 hours that you are about to fail because you are playing this game.")
     }
 }).setName("remindme").setAliases("remind", "rme")
-
-registerWhen(register("worldload", ()=>{
-    if(data.world != "Garden"){
-        visitTime -= 1000;
-    }
-}),()=>settings.dailyDisplay)

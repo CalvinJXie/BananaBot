@@ -41,7 +41,7 @@
 	[nether.kuudra]
 		reparty_partner = "lhxseven"
 		ping_offset = "0"
-		kuudra_profit = false
+		kuudra_profit = true
 		kuudra_reparty = false
 
 [slayer]
@@ -245,6 +245,7 @@
 		display_raw_craft_cost = true
 
 	[economy.auto]
+		auto_update_bazaar = true
 		auto_check_prices = false
 
 	[economy.search_loop]

@@ -54,7 +54,7 @@ registerWhen(register('itemToolTip', (l, tool)=>{
         copper = parseInt(copperOffer.substring(copperOffer.indexOf('+')+3, copperOffer.indexOf("Copper")-1));
         item1 = findID(offer1.substring(7, offer1.length));
         coinToCopper = price[item1]/copper;
-        displayLore(l, tool, coinToCopper, item1, quant1);
+        displayLore(l, tool, coinToCopper, item1, 1);
     }else if(jack != -1 || goldCar == "Golden Carrot"){
         if(goldCar == "Golden Carrot"){
             ctcString = `§8Copper Ratio: §a600`

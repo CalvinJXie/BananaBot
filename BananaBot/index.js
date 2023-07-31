@@ -4,7 +4,7 @@ import { setBzPrices } from "./utils/bazaarFunctions"
 import { setRegisters, registerWhen } from "./utils/functions"
 import { data } from "./utils/variables"
 import { YELLOW, WHITE, BOLD, LOGO, helpMsg } from "./utils/constants"
-import { setPages, updateAhPrices } from "./utils/auctionFunctions"
+import { updateAhPrices } from "./utils/auctionFunctions"
 //Kuudra
 import "./features/Kuudra/KuudraProfitCalc"
 //Damage calc
@@ -86,6 +86,7 @@ ${LOGO}${YELLOW}${BOLD}/bbgui ${WHITE}to move gui positions.
 //when chat trigger reloaded command
 register("gameLoad", () => {
   setRegisters();
+  data.save();
   ChatLib.chat(welcomeMsg);
 });
 //when joining hypixel
@@ -93,27 +94,20 @@ register("chat", () => {
   setRegisters();
   setBzPrices();
   ChatLib.chat(welcomeMsg);
+  findWorld();
 }).setCriteria("Welcome to Hypixel SkyBlock!");
 
 //command to show help commands
 register("command", () => ChatLib.chat(helpMsg)).setName("bbhelp");
 
-todoList = `Todo:
-Chest profit calc
-Alter ah search to look for attribute prices
-calc pet exp to coin
-tax calculator
-shen tracker
-change skills to a class maybe?
-Leet Code :)
-`
-register("command", () => ChatLib.chat(todoList)).setName("todo");
-
 registerWhen(register("step", ()=>{
   setBzPrices();
-  setPages();
+}).setDelay(600), ()=>settings.autoUpdateBz);
+
+registerWhen(register("step", ()=>{
   updateAhPrices();
-}).setDelay(900), ()=>settings.autoUpdate);
+  ChatLib.chat(`${LOGO} Hourly Auction price update finished. Sorry for the lag! Turn off in settings if you do not want up to date prices. You can do /uah if you want to manually.`)
+}).setDelay(3600), ()=>settings.autoUpdateAh);
 
 register("command", () => {
   updateAhPrices();
@@ -125,9 +119,18 @@ register("command", () => {
   ChatLib.chat(LOGO + "Bz prices updated");
 }).setName("ubz");
 
-register("worldload", () =>{
-  setTimeout(()=>{
-    tablist = TabList.getNames();
+register("chat", () =>{
+  findWorld();
+}).setCriteria("You are playing on profile: ${fruit}")
+
+register("gameUnload",()=>findWorld())
+
+register("ServerDisconnect", ()=>data.world = "")
+
+function findWorld(){
+  if(TabList == null) return;
+  tablist = null;
+  tablist = TabList.getNames();
     if(tablist == null){
       data.world = "";
       return;
@@ -138,5 +141,22 @@ register("worldload", () =>{
     }else{
       data.world = "";
     }
-  },2000)
-})
+}
+
+todoList = `Todo:
+check for book stuff
+calc pet exp to coin
+tax calculator
+shen tracker
+change skills to a class maybe?
+fix bazaar look growth 5
+fix daily visitor timer something with visitorTime
+
+Leet Code :)
+`
+register("command", () => ChatLib.chat(todoList)).setName("todo");
+register("command", () => ChatLib.chat(data.world)).setName("ww");
+
+register("command", () => {
+  data.locations["KPL"] = [100, 100, false]
+}).setName("uz");
