@@ -11,11 +11,13 @@ tablist = null;
 
 //returns the time till next visitor in seconds
 function getVisitorTime(){
-    visitorTime = remainTime(720, data.daily.visitor);
+    visitTime = remainTime(720, data.daily.visitor);
     if(data.world != "Garden") return;
     tablist = TabList.getNames();
     if(tablist != null){
         visit = tablist.find((tab)=> tab.indexOf("Next Visitor:") != -1);
+        guest = tablist.find((tab)=> tab.indexOf("Status:") != -1);
+        if(guest) return;
         if(visit){
             nextVisit = visit.removeFormatting().substring(visit.indexOf(":"), visit.length)
             if(nextVisit.indexOf("Queue Full") != -1){
@@ -75,6 +77,7 @@ registerWhen(register("chat", () =>{
 
 registerWhen(register("chat", ()=>{
     data.daily.visitor = newTime();
+    data.world = "Garden";
     ChatLib.chat(`${YELLOW}added Visitor timer`)
 }).setCriteria("${npc} has arrived on your Garden!"), ()=> settings.trackDaily)
 

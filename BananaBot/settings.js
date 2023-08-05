@@ -28,38 +28,38 @@ import {
     },
 })
 class settings {
-    //Kuudra reparty
+    //Kuudra
     @SwitchProperty({
         name: "Kuudra Profit",
         description: `Displays profit per chest.`,
         category: "Nether",
-        subcategory: "Kuudra"
+        subcategory: "Kuudra Profit"
     })
     kuudraProfit = false
 
     @SwitchProperty({
-        name: "Kuudra Reparty",
-        description: `Will do reparty stuff for kuudra.`,
+        name: "Kuudra Teeth Profit",
+        description: `Adds teeth into total profit.`,
         category: "Nether",
-        subcategory: "Kuudra"
+        subcategory: "Kuudra Profit"
     })
-    kuudraRP = false
+    kuudraTeeth = false
 
-    @TextProperty({
-        name: "Reparty Partner",
-        description: `Input the trading partner.`,
+    @SwitchProperty({
+        name: "lvl 100 Kuudra Pet",
+        description: `includes lvl 100 pet into essence calculation. Enable if you have one otherwise its base essence amount.`,
         category: "Nether",
-        subcategory: "Kuudra"
+        subcategory: "Kuudra Profit"
     })
-    partyTransfer = ""
+    maxKuudraPet = true
 
-    @TextProperty({
-        name: "Ping Offset",
-        description: `Input a ping offset for warps if you are like EU or AU.`,
+    @SwitchProperty({
+        name: "Key cost",
+        description: `Enable to use Enchanted Mycelium, turn off to use Enchanted Red Sand.`,
         category: "Nether",
-        subcategory: "Kuudra"
+        subcategory: "Kuudra Profit"
     })
-    KuudraPingOffset = "0"
+    kuudraCalcMyc = true
 
     //Trackers
     @SwitchProperty({
@@ -209,7 +209,7 @@ class settings {
 
     @SwitchProperty({
         name: "Party Auto Join List Only",
-        description: `/joinlist add/remove/show. Ex: /joinlist add BananaTheBot, /joinlist remove BananaTheBot/all, /joinlist show`,
+        description: `/joinlist add/remove/show/bl. Ex: /joinlist add BananaTheBot, /joinlist remove BananaTheBot/all, /joinlist show`,
         category: "Party",
         subcategory: "Auto Join"
     })
@@ -246,71 +246,6 @@ class settings {
         subcategory: "Party"
     })
     CustomPartyMessage = ""
-
-    //Dungeon
-    @SwitchProperty({
-        name: "Reparty",
-        description: `Turn on/off to enable the reparty command`,
-        category: "Party",
-        subcategory: "Dungeon Reparty"
-    })
-    reParty = false;
-
-    @TextProperty({
-        name: "Dungeon Reparty",
-        description: `input a custom dungeon reparty command. DO NOT put a slash. Ex: rp`,
-        category: "Party",
-        subcategory: "Dungeon Reparty"
-    })
-    RePartyCommand = "rat"
-
-    @SwitchProperty({
-        name: "Rejoin Dungeon",
-        description: `Input your party data and the floor type and tier to rejoin that dungeon floor`,
-        category: "Dungeon",
-        subcategory: "Dungeon Rejoin"
-    })
-    AutoRejoin = false;
-
-    @SwitchProperty({
-        name: "Join Garden",
-        description: `Turn on if you want to warp garden before rejoining a new dungeon instance.`,
-        category: "Dungeon",
-        subcategory: "Dungeon Rejoin"
-    })
-    DungeonGardenJoin = false;
-
-    @SwitchProperty({
-        name: "Master Mode",
-        description: `Turn on if you are running master mode dungeons, if not keep it off`,
-        category: "Dungeon",
-        subcategory: "Dungeon Rejoin"
-    })
-    DunMasMode = false;
-
-    @SwitchProperty({
-        name: "Normal",
-        description: `Turn on if you are running normal dungeons, if not keep it off`,
-        category: "Dungeon",
-        subcategory: "Dungeon Rejoin"
-    })
-    DunNorm = false;
-
-    @TextProperty({
-        name: "Offset Ping",
-        description: `Put increased command delay in milliseconds (1000 = 1 second)`,
-        category: "Dungeon",
-        subcategory: "Dungeon Rejoin"
-    })
-    DungeonPingOffset = "0"
-
-    @TextProperty({
-        name: "Dungeon Floor",
-        description: `input the dungeon floor you want to rejoin`,
-        category: "Dungeon",
-        subcategory: "Dungeon Rejoin"
-    })
-    DunFloor = ""
 
     //Slayer
     @SwitchProperty({
@@ -355,16 +290,8 @@ class settings {
     autoUpdateBz = true;
 
     @SwitchProperty({
-        name: "Auto Check prices",
-        description: `Automatically updates auction house prices every hour. This is really bad performance. /uah if you want to manually update.`,
-        category: "Economy",
-        subcategory: "Auto"
-    })
-    autoUpdateAh = true;
-
-    @SwitchProperty({
-        name: "Display Raw Craft Cost",
-        description: `Displays raw craft cost at the bottom of the item.`,
+        name: "Display enchant cost",
+        description: `Displays enchant cost and gemstone cost of an item in lore.`,
         category: "Economy",
         subcategory: "Item Cost"
     })
@@ -695,6 +622,30 @@ class settings {
     wart = "660000"
   
     //QOL
+    @SwitchProperty({
+        name: "Copy Chat Message",
+        description: `Copies chat message when clicked (left click).`,
+        category: "QOL",
+        subcategory: "Chat"
+    })
+    copyChat = false;
+
+    @SwitchProperty({
+        name: "Copy Chat Notifier",
+        description: `Turns on/off the chat notifier`,
+        category: "QOL",
+        subcategory: "Chat"
+    })
+    copyChatNotifier = false;
+
+    @TextProperty({
+        name: "Chat History",
+        description: `Input how far back chat history will store that you can copy to clipboard.`,
+        category: "QOL",
+        subcategory: "Chat"
+    })
+    historySize = "50";
+
     @SwitchProperty({
         name: "Broken Hyperion",
         description: `Uses ${RED}<Book of Stats> ${RESET}and ${RED}<Champion> ${RESET}to track when Wither Impact breaks.`,
@@ -1168,9 +1119,6 @@ class settings {
         });
         this.registerListener('Hydra Heads', newText => {
             costHydra = newText;
-        });
-        this.registerListener('Offset Ping', newText => {
-            DungeonPingOffset = newText;
         });
         this.registerListener('Bazaar Notifier Timer', newText =>{
             BzNotifTimer = newText;

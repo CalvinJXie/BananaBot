@@ -10,14 +10,14 @@ export let data = new PogObject("BananaBot", {
         "powderLoc": [10, 90, false], //Powder Tracker Location
         "STL": [10, 200, false], //Skill Tracker Location
         "MTL": [10, 120, false], //Mob Tracker Location
-        "KPL": [100, 100, false], //Kuudra Profit Location
+        "KPL": [300, 100, false] //Kuudra Profit Location
     },
     "BazaarNotif": {},
     "Party":{"Leader":"", "Members":[]},
     "PartyWL": [],
+    "PartyBL": [],
     "daily": {"cake":0, "eyedrop":0, "matriarch":0, "feeder":0, "hiker":0, "visitor":0},
-    "world": "",
-    "totalPages": 0
+    "world": ""
 }, "userdata.json")
 
 register("gameUnload", ()=>{

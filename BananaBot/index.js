@@ -1,10 +1,9 @@
 import settings from "./settings"
 //utils
-import { setBzPrices } from "./utils/bazaarFunctions"
+import { setBzPrices, setBzItems } from "./utils/bazaarFunctions"
 import { setRegisters, registerWhen } from "./utils/functions"
 import { data } from "./utils/variables"
 import { YELLOW, WHITE, BOLD, LOGO, helpMsg } from "./utils/constants"
-import { updateAhPrices } from "./utils/auctionFunctions"
 //Kuudra
 import "./features/Kuudra/KuudraProfitCalc"
 //Damage calc
@@ -23,16 +22,15 @@ import "./features/Trackers/dailyTimers"
 import "./features/Trackers/Powder"
 import "./features/Trackers/SkillTracker"
 //Party
-import "./features/Party/KuudraReparty"
 import "./features/Party/Party"
 import "./features/Party/PartyCommands"
-import "./features/Party/RejoinDungeon"
 //gui
 import "./features/test"
 import { moveText } from "./features/MoveText"
 //Statistics
 import "./features/Statistics/BinomialDist"
 //qol features
+import "./features/qol/copyToClipboard"
 import "./features/qol/BrokenHyp"
 import "./features/qol/PickUpStash"
 import "./features/qol/ItemTimer"
@@ -86,11 +84,13 @@ ${LOGO}${YELLOW}${BOLD}/bbgui ${WHITE}to move gui positions.
 //when chat trigger reloaded command
 register("gameLoad", () => {
   setRegisters();
+  setBzItems();
   data.save();
   ChatLib.chat(welcomeMsg);
 });
 //when joining hypixel
 register("chat", () => {
+  setBzItems();
   setRegisters();
   setBzPrices();
   ChatLib.chat(welcomeMsg);
@@ -103,16 +103,6 @@ register("command", () => ChatLib.chat(helpMsg)).setName("bbhelp");
 registerWhen(register("step", ()=>{
   setBzPrices();
 }).setDelay(600), ()=>settings.autoUpdateBz);
-
-registerWhen(register("step", ()=>{
-  updateAhPrices();
-  ChatLib.chat(`${LOGO} Hourly Auction price update finished. Sorry for the lag! Turn off in settings if you do not want up to date prices. You can do /uah if you want to manually.`)
-}).setDelay(3600), ()=>settings.autoUpdateAh);
-
-register("command", () => {
-  updateAhPrices();
-  ChatLib.chat(LOGO + "Auction prices updated");
-}).setName("uah");
 
 register("command", () => {
   setBzPrices();
@@ -144,19 +134,13 @@ function findWorld(){
 }
 
 todoList = `Todo:
-check for book stuff
 calc pet exp to coin
 tax calculator
 shen tracker
+
 change skills to a class maybe?
-fix bazaar look growth 5
-fix daily visitor timer something with visitorTime
 
 Leet Code :)
 `
 register("command", () => ChatLib.chat(todoList)).setName("todo");
 register("command", () => ChatLib.chat(data.world)).setName("ww");
-
-register("command", () => {
-  data.locations["KPL"] = [100, 100, false]
-}).setName("uz");

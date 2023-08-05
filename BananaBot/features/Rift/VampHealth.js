@@ -36,8 +36,6 @@ function timerOverlay() {
     const bossSpawnCoordinates = slayerBossPos[0];
     const bossCoordinates = playerBossPos[0];
 
-    console.log(bossSpawnCoordinates.x)
-
     if (!bossSpawnCoordinates || !bossCoordinates) return; // Check if either coordinate is missing
 
     const range = 5; // Define the range in blocks

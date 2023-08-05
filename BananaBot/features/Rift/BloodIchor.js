@@ -9,7 +9,6 @@ registerWhen(register("renderOverlay", timerOverlay), () => settings.BloodIchor)
 
 function timerOverlay() {
     const stands = World.getAllEntitiesOfType(EntityArmorStand.class);
-    //console.log(stands)
     const vamp = stands.filter(stand => stand.getName().includes('§c'));
     const respawnTimes = vamp.map(stand => {
         const name = stand.getName();

@@ -3,13 +3,18 @@ import { data } from "../../utils/variables";
 import { getPlayerName } from "../../utils/functions";
 import { registerWhen } from "../../utils/functions";
 
-function checkInParty(line, command)
-{
-  if(line.indexOf("Party >") != -1)
-  {
+function checkInParty(line, command){
+  if(line.indexOf("Party >") == -1) return;
+  bl = true;
+  data.partyBL.forEach((player)=>{
+    if(line.includes(player)){
+      bl = false;
+    }
+  })
+  if(bl){
     setTimeout(() => {
       ChatLib.say(command);
-    }, 400)
+    }, 600)
   }
 }
 
@@ -54,38 +59,12 @@ registerWhen(register("chat", (before) => {
   checkInParty(before, "/p disband")
 }).setCriteria("${before}!disband"), () =>settings.PartyCommands)
 
-registerWhen(register("chat", (before, after) => {
+registerWhen(register("chat", () => {
   if(data.Party.Leader != Player.getName()) return;
-  checkInParty(before, `/joindungeon catacombs ${after}`)
-  ChatLib.chat(`Joining Floor ${after}`)
-}).setCriteria("${before}!join ${after}"), () =>settings.PartyCommands)
+  ChatLib.say("/instancerequeue")
+}).setCriteria("${before}!reque ${after}"), () =>settings.PartyCommands)
 
 registerWhen(register("chat", (before) => {
   checkInParty(before, settings.CustomPartyMessage)
 }).setCriteria("${before}"+settings.CustomPartyName), () =>settings.PartyCommands)
 
-function party(x){
-  if(data.Party.Members[x]){
-    ChatLib.command(`p ${data.Party.Members[x]}`)
-  } 
-}   
-
-register("command", () => {
-  offset = parseInt(settings.DungeonPingOffset)
-  ChatLib.command("p disband")
-  setTimeout(()=>{
-    party(0);
-  }, 300+offset);
-
-  setTimeout(()=>{
-    party(1);
-  }, 600+offset);
-
-  setTimeout(()=>{
-    party(2);
-  }, 900+offset);
-
-  setTimeout(()=>{
-    party(3);
-  }, 1200+offset);
-}).setName(settings.RePartyCommand)

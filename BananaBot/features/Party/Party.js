@@ -1,6 +1,6 @@
 import { data } from "../../utils/variables";
 import settings from "../../settings";
-import { YELLOW, GREEN, WHITE } from "../../utils/constants";
+import { YELLOW, GREEN, WHITE, LOGO } from "../../utils/constants";
 import { registerWhen } from "../../utils/functions";
 
 const IGN = Player.getName();
@@ -27,66 +27,9 @@ function addMember(name){
     }
 }
 
-function party(x){
-    if(data.Party.Members[x] != 'undefined'){
-        ChatLib.command(`p ${data.Party.Members[x]}`)
-    }
-}   
-
-dungeonParty = [];
-//dungeon party  
-registerWhen(register("chat", (player) =>{
-    player = getPlayerName(player);
-    if(player == IGN) return;
-    dungeonParty.push(player);
-}).setCriteria("${player} warped to your dungeon"), () => settings.AutoRejoin)
-
-registerWhen(register("chat", (player) =>{
-    player = getPlayerName(player);
-    if(player == IGN) return;
-    dungeonParty.push(player);
-}).setCriteria("${player} cannot warp from Limbo" ), () => settings.AutoRejoin)
-
-registerWhen(register("chat", (player) =>{
-    player = getPlayerName(player);
-    if(player == IGN) return;
-    dungeonParty.push(player);
-}).setCriteria("${player} is not allowed on your server!" ), () => settings.AutoRejoin)
-
-/*-----------------------------------------------------
-[VIP] positivecoin has invited you to join [MVP+] NegativeCoin's party!
-You have 60 seconds to accept. Click here to join!
------------------------------------------------------
-*/
-
-registerWhen(register("chat", () =>{
-    offset = parseInt(settings.DungeonPingOffset)
-    if(dungeonParty){
-        data.Party.Members = dungeonParty;
-        ChatLib.command("p disband")
-        setTimeout(()=>{
-            party(0);
-        }, (300+offset));
-
-        setTimeout(()=>{
-            party(1);
-        }, (600+offset));
-
-        setTimeout(()=>{
-            party(2);
-        }, (900+offset));
-
-        setTimeout(()=>{
-            party(3);
-        }, (1200+offset));
-    }
-    dungeonParty = [];
-}).setCriteria("${player} has started the dungeon countdown. The dungeon will begin in 1 minute." ), () => settings.AutoRejoin && IGN == data.Party.Leader)
-
 isLeader = false;
 //disbanding
 register("chat", () => {
-    if(settings.AutoRejoin || settings.reParty) return;
     delMembers();
 }).setCriteria("${player} has disbanded the party!")
 
@@ -99,7 +42,6 @@ register("chat", () => {
 }).setCriteria("The party was disbanded because the party leader disconnected.")
 
 register("chat", () => {
-    if(settings.kuudraRP) return;
     delMembers();
 }).setCriteria("You left the party.")
 
@@ -131,6 +73,14 @@ register("chat", (player) => {
 }).setCriteria("${player} has left the party.")
 
 //tracks leader
+register("chat", (player1, player2) => {//party promote
+    player1 = getPlayerName(player1);
+    player2 = getPlayerName(player2);
+    if(data.Party.Leader == ""){
+        data.Party.Leader = player1;
+    }
+}).setCriteria("${player1} invited ${player2} to the party!")
+
 register("chat", (player1, player2) => {//party transfer manual
     player1 = getPlayerName(player1);
     player2 = getPlayerName(player2);
@@ -154,11 +104,6 @@ register("chat", (player1, player2) => {//party transferred for leaving
     removeFromMembers(player1);
     removeFromMembers(player2);
 }).setCriteria("The party was transferred to ${player1} because ${player2} left")
-
-register("chat", (player) => {
-    player = getPlayerName(player);
-    data.Party.Leader = player;
-}).setCriteria("${player} invited ${player2}")
 
 //User joins party
 register("chat", (player) => {
@@ -202,9 +147,9 @@ register("command", (...args) => {
     if(args[0] == "add"){
         if(data.PartyWL.indexOf(args[1]) == -1){
             data.PartyWL.push(args[1])
-            ChatLib.chat(`${YELLOW}Added ${GREEN}${args[1]} ${YELLOW}to the party join list`)
+            ChatLib.chat(`${LOGO}${YELLOW}Added ${GREEN}${args[1]} ${YELLOW}to the party join list`)
         }else{
-            ChatLib.chat(`${YELLOW}User ${GREEN}${args[1]} ${YELLOW}is already in the list /joinlist show to see users added`)
+            ChatLib.chat(`${LOGO}${YELLOW}User ${GREEN}${args[1]} ${YELLOW}is already in the whitelist /joinlist show bl to show users in whitelist`)
         }
     }else if(args[0] == "remove"){
         if(args[1] == "all"){
@@ -215,26 +160,63 @@ register("command", (...args) => {
                 data.PartyWL.splice(index, 1)
             }
             if(data.PartyWL.indexOf(args[1]) == -1){
-                ChatLib.chat(`${YELLOW}Removed ${GREEN}${args[1]} ${YELLOW}from the party join list`)
+                ChatLib.chat(`${LOGO}${YELLOW}Removed ${GREEN}${args[1]} ${YELLOW}from the whitelist`)
             }
         }
     }else if(args[0] == "show"){
-        let listNames = `${YELLOW}Users in list: ${WHITE}`
-        size = data.PartyWL.length
-        for(let i = 0;i<size;i++){
-            if(i == size-1){
-                listNames += data.PartyWL[i]
-            }else{
-                listNames += data.PartyWL[i] + ", "
-            }  
+        if(args[1] == "wl"){
+            let listNames = `${LOGO}${YELLOW}Users in list: ${WHITE}`
+            size = data.PartyWL.length
+            for(let i = 0;i<size;i++){
+                if(i == size-1){
+                    listNames += data.PartyWL[i]
+                }else{
+                    listNames += data.PartyWL[i] + ", "
+                }  
+            }
+            ChatLib.chat(listNames)
+        }else if(args[1] == "bl"){
+            let listNames = `${LOGO}${YELLOW}Users in list: ${WHITE}`
+            size = data.PartyBL.length
+            for(let i = 0;i<size;i++){
+                if(i == size-1){
+                    listNames += data.PartyBL[i]
+                }else{
+                    listNames += data.PartyBL[i] + ", "
+                }  
+            }
+            ChatLib.chat(listNames)
+        }else{
+            ChatLib.chat(`${LOGO}${YELLOW}Only available arguments are bl and wl. /joinlist show bl/wl`)
+        } 
+    }else if(args[0] == "bl"){
+        if(data.PartyBL.indexOf(args[1]) == -1){
+            data.PartyBL.push(args[1])
+            ChatLib.chat(`${LOGO}${YELLOW}Added ${GREEN}${args[1]} ${YELLOW}to the party commands blacklist`)  
+        }else{
+            ChatLib.chat(`${LOGO}${YELLOW}User ${GREEN}${args[1]} ${YELLOW}is already in the blacklist /joinlist show bl to show users in blacklist`)
         }
-        ChatLib.chat(listNames)
-    }
-    else{
-        ChatLib.chat(`${YELLOW}Invalid argument, please only do /joinlist (add, remove, show). If add/remove put a valid username afterwards like /joinlist add BananaTheBot`)
+    }else if(args[0] == "blr"){
+        if(args[1] == "all"){
+            data.PartyBL = [];
+        }else{
+            index = data.PartyBL.indexOf(args[1])
+            if(index != -1){
+                data.PartyBL.splice(index, 1)
+            }
+            if(data.PartyBL.indexOf(args[1]) == -1){
+                ChatLib.chat(`${LOGO}${YELLOW}Removed ${GREEN}${args[1]} ${YELLOW}from the blacklist`)
+            }
+        }
+    }else{
+        ChatLib.chat(`${LOGO}${YELLOW}Invalid argument, please only do /joinlist (add <name>, remove <name/all>, show <bl/wl>, bl <name>, blr <name/all>). Ex: /joinlist bl BananaTheBot, /joinlist blr BananaTheBot. Adds/removes BananaTheBot to blacklist`)
     }
 }).setName("joinlist")
 
 register("chat", () => {
     delMembers();
 }).setCriteria("Welcome to Hypixel SkyBlock!");
+
+register("command", (args)=>{
+    ChatLib.say(`/p transfer ${args}`)
+}).setName("pt")

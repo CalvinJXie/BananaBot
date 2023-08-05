@@ -1,8 +1,20 @@
 import request from '../../requestV2';
-import { readJson, writeJson } from './functions';
+import axios from '../../axios';
+import { writeJson } from './functions';
+import { LOGO, RED } from './constants';
 
 const BZ_API = 'https://api.hypixel.net/skyblock/bazaar';
-const bzItems = readJson("data", "bazaar.json")["bazaarNames"];
+export const myBzApi = 'http://bananabot.pythonanywhere.com/bazaar'
+let bzItems;
+
+export function setBzItems(){
+  axios.get(myBzApi).then((response)=>{
+    bzItems = response.data.bazaarNames
+  }).catch((error)=>{
+    ChatLib.chat(`${LOGO}${RED}Bazaar api error`)
+    console.log(JSON.stringify(error, false, 2))
+  })
+}
 
 export function setBzPrices(){
   newDict={"price":{"sellOffer":{}, "buyOrder":{}}};
@@ -36,17 +48,17 @@ export function setBzPrices(){
   })
 }
 
-//searches uuid, returns item name no spaces
-const bzItemsReverseMap = new Map(Object.entries(bzItems).map(([key, value]) => [value, key]));
-
 export function findName(search) {
+  //searches uuid, returns item name no spaces
+  const bzItemsReverseMap = new Map(Object.entries(bzItems).map(([key, value]) => [value, key]));
+
   return bzItemsReverseMap.get(search) || search;
 }
 
-//finds correct UUID for an item
-const bzItemsMap = new Map(Object.entries(bzItems).map(([key, value]) => [key.toLowerCase().replace(/_/g, " "), value]));
-
 export function findID(search) {
+  //finds correct UUID for an item
+  const bzItemsMap = new Map(Object.entries(bzItems).map(([key, value]) => [key.toLowerCase().replace(/_/g, " "), value]));
+
   const searchKey = search.toLowerCase().replace(/_/g, " ");
   if (bzItemsMap.has(searchKey)) {
     return bzItemsMap.get(searchKey);
@@ -71,7 +83,6 @@ export function getItems(search) {
   }).then((response) => {
     const products = response.products;
     Object.keys(products).forEach((item)=>{
-      console.log(item)
       if(item.includes(search)){
         ChatLib.chat(item);
       }
@@ -179,7 +190,6 @@ export function getInstaSellDict(dict, callback) {
     } else {
       // Use the instaBuyPrice here or perform additional actions
       ChatLib.chat(`${DARK_GRAY}${item} ${BOLD}${YELLOW}Insta Buy Price: ${DARK_GREEN}${formatDouble(instaBuyPrice)}`);
-      console.log(instaBuyPrice);
     }
   });
 
@@ -197,7 +207,6 @@ export function getInstaSellDict(dict, callback) {
         console.error(error);
       } else {
         // Use the updatedDict here or perform additional actions
-        console.log(updatedDict);
       }
     });
 */

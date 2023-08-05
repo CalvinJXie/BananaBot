@@ -40,14 +40,14 @@ export const bzBlaze = {
     "SCORCHED_POWER_CRYSTAL":0,
     "SUBZERO_INVERTER":0,
 }
-export const ahBlaze = {
-    "Lavatears Rune": {price: 0, uuid: null},
-    "Fiery Burst Rune": {price: 0, uuid: null},
-    "Mana Disintegrator": {price: 0, uuid: null},
-    "High Class Archfiend Dice": {price: 0, uuid: null},
-    "Archfiend Dice": {price: 0, uuid: null},
-    "Wilson's Engineering Plans": {price: 0, uuid: null}
-}
+export const ahBlaze = [
+    "Lavatears Rune",
+    "Fiery Burst Rune",
+    "Mana Disintegrator",
+    "High Class Archfiend Dice",
+    "Archfiend Dice",
+    "Wilson's Engineering Plans"
+]
 export const dropsEman = {
     "NULL_SPHERE":130,
     "SUMMONING_EYE":MagicFindRate(0.56/100),
@@ -80,18 +80,18 @@ export const bzEman = {
     "TRANSMISSION_TUNER":0,
     "TWILIGHT_ARROW_POISON":0,
 }
-export const ahEman = {
-    "Endersnake Rune":{price: 0, uuid: null},
-    "Enchant Rune":{price: 0, uuid: null},
-    "End Rune":{price: 0, uuid: null},
-    "Pocket Espresso Machine":{price: 0, uuid: null},
-    "Handy Blood Chalice":{price: 0, uuid: null},
-    "Sinful Dice":{price: 0, uuid: null},
-    "Etherwarp Merger":{price: 0, uuid: null},
-    "Void Conqueror Enderman Skin":{price: 0, uuid: null},
-    "Exceedingly Rare Ender Artifact Upgrade":{price: 0, uuid: null},
-    "Judgement Core":{price: 0, uuid: null}
-}
+export const ahEman = [
+    "Endersnake Rune",
+    "Enchant Rune",
+    "End Rune",
+    "Pocket Espresso Machine",
+    "Handy Blood Chalice",
+    "Sinful Dice",
+    "Etherwarp Merger",
+    "Void Conqueror Enderman Skin",
+    "Exceedingly Rare Ender Artifact Upgrade",
+    "Judgement Core"
+]
 export const dropsRev = {
     "REVENANT_FLESH":63,
     "FOUL_FLESH":MagicFindRate(13.77/100),
@@ -116,14 +116,14 @@ export const bzRev = {
     "UNDEAD_CATALYST":0,
     "REVENANT_CATALYST":0,
 }
-export const ahRev = {
-    "Pestilence Rune":{price: 0, uuid: null},
-    "Snake Rune":{price: 0, uuid: null},
-    "Beheaded Horror":{price: 0, uuid: null},
-    "Scythe Blade":{price: 0, uuid: null},
-    "Shard of the Shredded":{price: 0, uuid: null},
-    "Warden Heart":{price: 0, uuid: null}
-}
+export const ahRev = [
+    "Pestilence Rune",
+    "Snake Rune",
+    "Beheaded Horror",
+    "Scythe Blade",
+    "Shard of the Shredded",
+    "Warden Heart"
+]
 export const dropsSven = {
     "WOLF_TOOTH":57,
     "HAMSTER_WHEEL":MagicFindRate(16.22/100),
@@ -141,13 +141,13 @@ export const bzSven = {
     "ENCHANTMENT_CRITICAL_6":0,
     "FURBALL":0,
 }
-export const ahSven = {
-    "Spirit Rune":{price: 0, uuid: null},
-    "Red Claw Egg":{price: 0, uuid: null},
-    "Couture Rune":{price: 0, uuid: null},
-    "Grizzly Bait":{price: 0, uuid: null},
-    "Overflux Capacitor":{price: 0, uuid: null}
-}
+export const ahSven = [
+    "Spirit Rune",
+    "Red Claw Egg",
+    "Couture Rune",
+    "Grizzly Bait",
+    "Overflux Capacitor"
+]
 
 export const dropsTara = {
     "TARANTULA_WEB":56,
@@ -166,8 +166,8 @@ export const bzTara = {
     "SPIDER_CATALYST":0,
     "FLY_SWATTER":0
 }
-export const ahTara = {
-    "Bite Rune":{price: 0, uuid: null},
-    "Tarantula Talisman":{price: 0, uuid: null},
-    "Digested Mosquito":{price: 0, uuid: null}
-}
+export const ahTara = [
+    "Bite Rune",
+    "Tarantula Talisman",
+    "Digested Mosquito"
+]
