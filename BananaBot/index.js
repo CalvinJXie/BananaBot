@@ -118,12 +118,19 @@ register("gameUnload",()=>findWorld())
 
 register("worldLoad",()=>findWorld())
 
-register("ServerDisconnect", ()=>data.world = "")
+data.world = "";
 
-register("ServerDisconnect", ()=>data.world = "")
+register("ServerDisconnect", ()=>{data.world = "";})
+
+register("ServerConnect", ()=>{data.world = ""})
+
+register("chat", ()=>{data.world = ""}).setCriteria("${player} joined the lobby!")
 
 function findWorld(){
-  if(TabList == null) return;
+  if(Server.getIP() != "hypixel.net") {
+    data.world = "";
+    return;
+  }
   tablist = null;
   tablist = TabList.getNames();
     if(tablist == null){
@@ -138,10 +145,13 @@ function findWorld(){
     }
 }
 
+register("command", () => console.log(TabList.getNames())).setName("yy");
+
 todoList = `Todo:
 calc pet exp to coin
 tax calculator
 shen tracker
+shen special tracker
 
 change skills to a class maybe?
 

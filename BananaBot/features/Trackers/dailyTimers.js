@@ -7,30 +7,27 @@ remindStart = 0;//start of the remind
 remindName = "";//holds the remind name
 displayString = "";//string to hold every single tracked display to render
 visitTime = remainTime(720, data.daily.visitor);//stores the visit time in tab
-tablist = null;
 
 //returns the time till next visitor in seconds
 function getVisitorTime(){
+    tablist = null;
     visitTime = remainTime(720, data.daily.visitor);
-    if(data.world != "Garden") return;
+    if(data.world != "Garden") return visitTime;
     tablist = TabList.getNames();
-    if(tablist != null){
-        visit = tablist.find((tab)=> tab.indexOf("Next Visitor:") != -1);
-        guest = tablist.find((tab)=> tab.indexOf("Status:") != -1);
-        if(guest) return;
-        if(visit){
-            nextVisit = visit.removeFormatting().substring(visit.indexOf(":"), visit.length)
-            if(nextVisit.indexOf("Queue Full") != -1){
-                visitorTime = 0;
-            }
-            else if(nextVisit.indexOf('m') != -1){
-                visitorTime = 60 * parseInt(nextVisit.substring(0,nextVisit.indexOf('m'))) + parseInt(nextVisit.substring(nextVisit.indexOf('m')+1, nextVisit.indexOf('s')))
-            }else if(nextVisit.indexOf('s') != -1){
-                visitorTime = parseInt(nextVisit.substring(nextVisit.indexOf('m')+1, nextVisit.indexOf('s')))
-            }
+    if(tablist == null) return visitTime;
+    guest = tablist.find((tab)=> tab.indexOf("Status:") != -1);
+    if(guest) return visitTime;
+    visit = tablist.find((tab)=> tab.indexOf("Next Visitor:") != -1);
+    if(visit){
+        nextVisit = visit.removeFormatting().substring(visit.indexOf(":"), visit.length)
+        if(nextVisit.indexOf("Queue Full") != -1){
+            visitorTime = 0;
         }
-    }else{
-        ChatLib.chat("no tablist found")
+        else if(nextVisit.indexOf('m') != -1){
+            visitorTime = 60 * parseInt(nextVisit.substring(0,nextVisit.indexOf('m'))) + parseInt(nextVisit.substring(nextVisit.indexOf('m')+1, nextVisit.indexOf('s')))
+        }else if(nextVisit.indexOf('s') != -1){
+            visitorTime = parseInt(nextVisit.substring(nextVisit.indexOf('m')+1, nextVisit.indexOf('s')))
+        }
     }
     return visitorTime;
 }
