@@ -70,6 +70,22 @@ class settings {
     })
     trackBestiary = false;
 
+    @SwitchProperty({
+        name: "Display fishing catch",
+        description: `Types in chat (party chat) when a rare sea creature gets caught and its coords.`,
+        category: "Trackers",
+        subcategory: " Bestiary"
+    })
+    displayRareFish = false;
+
+    @TextProperty({
+        name: "Fishing countdown",
+        description: `Counts down in chat.`,
+        category: "Trackers",
+        subcategory: " Bestiary"
+    })
+    fishCountDown = "4";
+
     @TextProperty({
         name: "Powder Alias",
         description: `write your own alias. Instead of /powder or /pow you can use your own.`,
@@ -160,7 +176,7 @@ class settings {
     //Garden
     @SwitchProperty({
         name: "Visitor Profit",
-        description: `Displays coin per copper cost. Eq = coin/copper`,
+        description: `Displays coin per copper cost. Equation = coin/copper. May mess up if another mod is doing stuff to lore.`,
         category: "Garden",
         subcategory: "Visitors"
     })
@@ -209,7 +225,7 @@ class settings {
 
     @SwitchProperty({
         name: "Party Auto Join List Only",
-        description: `/joinlist add/remove/show/bl. Ex: /joinlist add BananaTheBot, /joinlist remove BananaTheBot/all, /joinlist show`,
+        description: `/list wl/wlr/bl/blr/show. Ex: /list wl BananaTheBot, /list wlr BananaTheBot/all, /list show wl`,
         category: "Party",
         subcategory: "Auto Join"
     })
@@ -222,14 +238,6 @@ class settings {
         subcategory: "Auto Join"
     })
     PartyAutoJoinAny = false;
-
-    @SwitchProperty({
-        name: "Party Auto Join Dungeon Leader Only",
-        description: `Turn this on and it will only rejoin your party leaders party. Must have "Rejoin Dungeon" in dungeon tab on.`,
-        category: "Party",
-        subcategory: "Auto Join"
-    })
-    PartyAutoJoinLead = false;
 
     @TextProperty({
         name: "Custom Party Name",
@@ -539,88 +547,7 @@ class settings {
         subcategory: "Inferno Minion Fuel"
     })
     minionAmt = "10"
-
-    //Farming
-    @TextProperty({
-        name: "Pumpkin",
-        description: `Input amount of crops broken per ${RED}${BOLD}jacobs  ${RESET}contest`,
-        category: "Farming",
-        subcategory: "Crops"
-    })
-    pumpkin = "230000"
-
-    @TextProperty({
-        name: "Mushroom",
-        description: `Input amount of crops broken per ${RED}${BOLD}jacobs  ${RESET}contest`,
-        category: "Farming",
-        subcategory: "Crops"
-    })
-    shroom = "450000"
-
-    @TextProperty({
-        name: "Sugar Cane",
-        description: `Input amount of crops broken per ${RED}${BOLD}jacobs  ${RESET}contest`,
-        category: "Farming",
-        subcategory: "Crops"
-    })
-    scane = "450000"
-
-    @TextProperty({
-        name: "Wheat",
-        description: `Input amount of crops broken per ${RED}${BOLD}jacobs  ${RESET}contest`,
-        category: "Farming",
-        subcategory: "Crops"
-    })
-    wheat = "280000"
-
-    @TextProperty({
-        name: "Potato",
-        description: `Input amount of crops broken per ${RED}${BOLD}jacobs  ${RESET}contest`,
-        category: "Farming",
-        subcategory: "Crops"
-    })
-    potato = "800000"
-
-    @TextProperty({
-        name: "Carrot",
-        description: `Input amount of crops broken per ${RED}${BOLD}jacobs  ${RESET}contest`,
-        category: "Farming",
-        subcategory: "Crops"
-    })
-    carrot = "800000"
-
-    @TextProperty({
-        name: "Cocoa Beans",
-        description: `Input amount of crops broken per ${RED}${BOLD}jacobs  ${RESET}contest`,
-        category: "Farming",
-        subcategory: "Crops"
-    })
-    cocoa = "600000"
-
-    @TextProperty({
-        name: "Melon",
-        description: `Input amount of crops broken per ${RED}${BOLD}jacobs  ${RESET}contest`,
-        category: "Farming",
-        subcategory: "Crops"
-    })
-    melon = "1200000"
-
-    @TextProperty({
-        name: "Cactus",
-        description: `Input amount of crops broken per ${RED}${BOLD}jacobs  ${RESET}contest`,
-        category: "Farming",
-        subcategory: "Crops"
-    })
-    cactus = "330000"
-
-    @TextProperty({
-        name: "Nether Wart",
-        description: `Input amount of crops broken per ${RED}${BOLD}jacobs  ${RESET}contest`,
-        category: "Farming",
-        subcategory: "Crops"
-    })
-    wart = "660000"
-  
+    
     //QOL
     @SwitchProperty({
         name: "Copy Chat Message",
@@ -632,7 +559,7 @@ class settings {
 
     @SwitchProperty({
         name: "Copy Chat Notifier",
-        description: `Turns on/off the chat notifier`,
+        description: `Turn on to disable the notification in chat`,
         category: "QOL",
         subcategory: "Chat"
     })

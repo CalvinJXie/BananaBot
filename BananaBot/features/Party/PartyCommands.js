@@ -1,12 +1,13 @@
 import settings from "../../settings";
 import { data } from "../../utils/variables";
-import { getPlayerName } from "../../utils/functions";
-import { registerWhen } from "../../utils/functions";
+import { getPlayerName, registerWhen } from "../../utils/functions";
 
 function checkInParty(line, command){
   if(line.indexOf("Party >") == -1) return;
+  person = getPlayerName(line.substring(line.indexOf("> ")+2, line.indexOf(":")))
+  if(person == Player.getName()) return;
   bl = true;
-  data.partyBL.forEach((player)=>{
+  data.PartyBL.forEach((player)=>{
     if(line.includes(player)){
       bl = false;
     }
@@ -59,6 +60,16 @@ registerWhen(register("chat", (before) => {
   checkInParty(before, "/p disband")
 }).setCriteria("${before}!disband"), () =>settings.PartyCommands)
 
+registerWhen(register("chat", (before) => {
+  if(data.Party.Leader != Player.getName()) return;
+  checkInParty(before, "/p settings allinvite")
+}).setCriteria("${before}!allinvite"), () =>settings.PartyCommands)
+
+registerWhen(register("chat", (player) => {
+  if(data.Party.Leader != Player.getName()) return;
+  checkInParty(before, `/p ${player.substring(0, player.indexOf(" "))}`)
+}).setCriteria("${before}!invite ${player}"), () =>settings.PartyCommands)
+
 registerWhen(register("chat", () => {
   if(data.Party.Leader != Player.getName()) return;
   ChatLib.say("/instancerequeue")
@@ -66,5 +77,5 @@ registerWhen(register("chat", () => {
 
 registerWhen(register("chat", (before) => {
   checkInParty(before, settings.CustomPartyMessage)
-}).setCriteria("${before}"+settings.CustomPartyName), () =>settings.PartyCommands)
+}).setCriteria("${before}"+settings.CustomPartyName), () =>settings.PartyCommands && settings.CustomPartyName != "")
 

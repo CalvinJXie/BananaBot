@@ -118,6 +118,9 @@ register("command", (...args) =>{
                 if(storeBestiary){
                     removeData("bestiary");
                     saveData("bestiary", storeBestiary);
+                    for(const key in seenBestiary){
+                        seenBestiary[key] = false;
+                    }
                     ChatLib.chat(`${LOGO}Saved Bestiary.`);
                 }else{
                     ChatLib.chat(`${LOGO}Nothing to save. Please hover over your bestiary mobs.`);

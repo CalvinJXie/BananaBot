@@ -16,6 +16,7 @@ import "./features/Garden/Crops"
 //Coin Exchanges
 import "./features/Exchanges/coinConvert"
 //Trackers
+import "./features/Trackers/trackSeaCreatures"
 import "./features/Trackers/trackBestiary"
 import "./features/Trackers/mobsKilled"
 import "./features/Trackers/dailyTimers"
@@ -114,6 +115,10 @@ register("chat", () =>{
 }).setCriteria("You are playing on profile: ${fruit}")
 
 register("gameUnload",()=>findWorld())
+
+register("worldLoad",()=>findWorld())
+
+register("ServerDisconnect", ()=>data.world = "")
 
 register("ServerDisconnect", ()=>data.world = "")
 

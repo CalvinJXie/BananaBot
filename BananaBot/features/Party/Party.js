@@ -1,6 +1,6 @@
 import { data } from "../../utils/variables";
 import settings from "../../settings";
-import { YELLOW, GREEN, WHITE, LOGO } from "../../utils/constants";
+import { YELLOW, GREEN, WHITE, LOGO, AQUA } from "../../utils/constants";
 import { registerWhen } from "../../utils/functions";
 
 const IGN = Player.getName();
@@ -79,8 +79,8 @@ register("chat", (player1, player2) => {//party promote
     if(data.Party.Leader == ""){
         data.Party.Leader = player1;
     }
-}).setCriteria("${player1} invited ${player2} to the party!")
-
+}).setCriteria("${player1} invited ${player2} ${after}")
+//
 register("chat", (player1, player2) => {//party transfer manual
     player1 = getPlayerName(player1);
     player2 = getPlayerName(player2);
@@ -128,8 +128,6 @@ register("chat", (player) => {
     player = getPlayerName(player).toLowerCase();
     if(data.PartyWL.indexOf(player) != -1 && settings.PartyAutoJoinList){
         ChatLib.command(`p join ${player}`)
-    }else if(settings.PartyAutoJoinLead && data.Party.Leader == player){
-        ChatLib.command(`p join ${player}`)
     }else if(settings.PartyAutoJoinAny){
         ChatLib.command(`p join ${player}`)
     }
@@ -144,16 +142,17 @@ register("command", (...args) => {
     if(args[1]){
         args[1] = args[1].toLowerCase();
     }
-    if(args[0] == "add"){
+    if(args[0] == "wl" && args[1] != undefined){
         if(data.PartyWL.indexOf(args[1]) == -1){
             data.PartyWL.push(args[1])
             ChatLib.chat(`${LOGO}${YELLOW}Added ${GREEN}${args[1]} ${YELLOW}to the party join list`)
         }else{
-            ChatLib.chat(`${LOGO}${YELLOW}User ${GREEN}${args[1]} ${YELLOW}is already in the whitelist /joinlist show bl to show users in whitelist`)
+            ChatLib.chat(`${LOGO}${YELLOW}User ${GREEN}${args[1]} ${YELLOW}is already in the whitelist /list show bl to show users in whitelist`)
         }
-    }else if(args[0] == "remove"){
+    }else if(args[0] == "wlr" && args[1] != undefined){
         if(args[1] == "all"){
             data.PartyWL = [];
+            ChatLib.chat(`${LOGO}${YELLOW}Removed all users in whitelist`)
         }else{
             index = data.PartyWL.indexOf(args[1])
             if(index != -1){
@@ -163,7 +162,7 @@ register("command", (...args) => {
                 ChatLib.chat(`${LOGO}${YELLOW}Removed ${GREEN}${args[1]} ${YELLOW}from the whitelist`)
             }
         }
-    }else if(args[0] == "show"){
+    }else if(args[0] == "show" && args[1] != undefined){
         if(args[1] == "wl"){
             let listNames = `${LOGO}${YELLOW}Users in list: ${WHITE}`
             size = data.PartyWL.length
@@ -187,18 +186,19 @@ register("command", (...args) => {
             }
             ChatLib.chat(listNames)
         }else{
-            ChatLib.chat(`${LOGO}${YELLOW}Only available arguments are bl and wl. /joinlist show bl/wl`)
+            ChatLib.chat(`${LOGO}${YELLOW}Only available arguments are bl and wl. /list show bl/wl`)
         } 
-    }else if(args[0] == "bl"){
+    }else if(args[0] == "bl" && args[1] != undefined){
         if(data.PartyBL.indexOf(args[1]) == -1){
             data.PartyBL.push(args[1])
             ChatLib.chat(`${LOGO}${YELLOW}Added ${GREEN}${args[1]} ${YELLOW}to the party commands blacklist`)  
         }else{
-            ChatLib.chat(`${LOGO}${YELLOW}User ${GREEN}${args[1]} ${YELLOW}is already in the blacklist /joinlist show bl to show users in blacklist`)
+            ChatLib.chat(`${LOGO}${YELLOW}User ${GREEN}${args[1]} ${YELLOW}is already in the blacklist /list show bl to show users in blacklist`)
         }
-    }else if(args[0] == "blr"){
+    }else if(args[0] == "blr" && args[1] != undefined){
         if(args[1] == "all"){
             data.PartyBL = [];
+            ChatLib.chat(`${LOGO}${YELLOW}Removed all users in blacklist`)
         }else{
             index = data.PartyBL.indexOf(args[1])
             if(index != -1){
@@ -209,9 +209,14 @@ register("command", (...args) => {
             }
         }
     }else{
-        ChatLib.chat(`${LOGO}${YELLOW}Invalid argument, please only do /joinlist (add <name>, remove <name/all>, show <bl/wl>, bl <name>, blr <name/all>). Ex: /joinlist bl BananaTheBot, /joinlist blr BananaTheBot. Adds/removes BananaTheBot to blacklist`)
+        ChatLib.chat(`${LOGO}${YELLOW}Invalid argument, please only do 
+${AQUA}/list wl <name> ${YELLOW}Ex: /list wl BananaTheBot, adds to whitelist
+${AQUA}/list wlr <name/"all"> ${YELLOW}Ex: /list wlr BananaTheBot, removes from whitelist
+${AQUA}/list show <bl/wl> ${YELLOW}Ex: /list show wl, displays users in whitelist or blacklist
+${AQUA}/list bl <name> ${YELLOW}Ex: /list bl BananaTheBot, adds user to blacklist
+${AQUA}/list blr <name/"all"> ${YELLOW}Ex: /list blr BananaTheBot, removes user from blacklist`)
     }
-}).setName("joinlist")
+}).setName("list", true)
 
 register("chat", () => {
     delMembers();
