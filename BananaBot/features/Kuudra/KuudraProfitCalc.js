@@ -174,5 +174,8 @@ ${AQUA}Teeth Total: ${GREEN}${formatDouble(total + teethPrice)}`
 registerWhen(register("postGuiRender", (x, y, guiType)=>{
     if(!guiType.toString().includes("GuiChest")) return;
     if(displayString == "") return;
+    inv = Player.getContainer();
+    if(inv == undefined) return;
+    if(inv.getName().indexOf("Paid Chest") == -1) return;
     Renderer.drawString(displayString, data.locations.KPL[0], data.locations.KPL[1])
 }),()=>finishedKuudra && settings.kuudraProfit);
