@@ -172,7 +172,7 @@ ${AQUA}Teeth Total: ${GREEN}${formatDouble(total + teethPrice)}`
 }).setDelay(1), ()=>finishedKuudra);
 
 registerWhen(register("postGuiRender", (x, y, guiType)=>{
-    if(guiType.toString().includes("GuiChat")) return;
+    if(!guiType.toString().includes("GuiChest")) return;
     if(displayString == "") return;
     Renderer.drawString(displayString, data.locations.KPL[0], data.locations.KPL[1])
 }),()=>finishedKuudra && settings.kuudraProfit);

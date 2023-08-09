@@ -13,12 +13,16 @@ GuiChest
 registerWhen(register("ChatComponentClicked", (chatMessage) => {
     const clickedText = chatMessage.text.removeFormatting();
     const foundMsg = chatHistory.find((entry)=>entry.includes(clickedText));
-    ChatLib.command(`ct copy ${foundMsg}`, true)
-    if(!settings.copyChatNotifier)
+    if(foundMsg != undefined){
+        ChatLib.command(`ct copy ${foundMsg}`, true)
+    }else{
+        ChatLib.command(`ct copy ${clickedText}`, true)
+    }
+    if(!settings.copyChatNotifier) return;
     if(foundMsg){
         ChatLib.chat(`${LOGO}${YELLOW}Text Copied!`)
     }else{
-        ChatLib.chat(`${LOGO}${RED}Error: Could not find the matching history entry.`);
+        ChatLib.chat(`${LOGO}${RED}Error: Could not find the matching history entry. The copy may be wrong.`);
     }
 }), ()=> settings.copyChat);
 

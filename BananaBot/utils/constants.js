@@ -58,6 +58,9 @@ ${YELLOW}${BOLD}/bzlist ${WHITE}to display items being tracked.
 ${YELLOW}${BOLD}/clear <itemName> ${WHITE}to reset bazaar notifier database tracker. You can get itemName from /bzlist.
 ${YELLOW}${BOLD}/ubz ${WHITE}to manually update bazaar prices.
 ${YELLOW}${BOLD}/dailycoin or /dc ${WHITE}to see how much daily money you make a day.
+${YELLOW}${BOLD}/ahf <page> <price> <item name> <item lore> ${WHITE}to search on for items that are lower than the price you inputted.
+${YELLOW}${BOLD}/ahl ${WHITE}to see the last viewauction uuids if you missed them from ahf.
+${YELLOW}${BOLD}/ahpages ${WHITE}to see total pages from auction house api that you can use in ahf.
 
 ${RED}${BOLD}Party:
 ${YELLOW}${BOLD}/resetparty ${WHITE}to reset any bad things that happen during dungeon rejoins.

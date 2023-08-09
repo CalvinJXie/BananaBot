@@ -64,7 +64,7 @@ class settings {
     //Trackers
     @SwitchProperty({
         name: "Bestiary",
-        description: `Hover over each mob inside your bestiary menu to store the data. Type /br <mobname> to display kills remaining. /br all to display all missing. /br clear <mobname> to manually remove a mob (alpha purposes).`,
+        description: `Hover over each mob inside your bestiary menu to store the data. Type /br <mobname> to display kills remaining. /br all to display all missing. /br clear <mobname> to manually remove a mob.`,
         category: "Trackers",
         subcategory: " Bestiary"
     })
@@ -79,8 +79,16 @@ class settings {
     displayRareFish = false;
 
     @TextProperty({
+        name: "Fishing trigger",
+        description: `Write what text to trigger on for you to display how many of what type of fish you caught before that text.`,
+        category: "Trackers",
+        subcategory: " Bestiary"
+    })
+    fishCountTrigger = "GO RATS";
+
+    @TextProperty({
         name: "Fishing countdown",
-        description: `Counts down in chat.`,
+        description: `Counts down in chat. Set hotkey in mc controls (start cd).`,
         category: "Trackers",
         subcategory: " Bestiary"
     })
