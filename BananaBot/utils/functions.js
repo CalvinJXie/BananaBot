@@ -220,3 +220,14 @@ export function sortDictAsc(dictionary) {
     });
     return sortedDict;
 }
+
+//BananaBotCoordinates
+export function sendCoords(mob){
+  if(settings.beaconGuild){
+      ChatLib.say(`/gc [BananaBotCoordinates] ${mob} spawned at x: ${parseInt(Player.getX())}, y: ${parseInt(Player.getY())}, z: ${parseInt(Player.getZ())}`)
+  }else if(settings.beaconParty){
+      ChatLib.say(`/pc [BananaBotCoordinates] ${mob} spawned at x: ${parseInt(Player.getX())}, y: ${parseInt(Player.getY())}, z: ${parseInt(Player.getZ())}`)
+  }else{
+      ChatLib.say(`[BananaBotCoordinates] ${mob} spawned at x: ${parseInt(Player.getX())}, y: ${parseInt(Player.getY())}, z: ${parseInt(Player.getZ())}`)
+  }
+}

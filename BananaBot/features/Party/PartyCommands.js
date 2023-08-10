@@ -46,9 +46,10 @@ registerWhen(register("chat", (before) => {
 
 registerWhen(register("chat", (before) => {
   let player = getPlayerName(before)
+  ChatLib.chat(player);
   if(player == Player.getName()) return;
   checkInParty(before, `/p transfer ${player}`)
-}).setCriteria("${before}!transfer"), () =>settings.PartyCommands)
+}).setCriteria("${before}: !transfer"), () =>settings.PartyCommands)
 
 registerWhen(register("chat", (before) => {
   if(data.Party.Leader != Player.getName()) return;

@@ -9,6 +9,7 @@
     "PogData",
     "requestV2",
     "Lore",
-    "Axios"
+    "Axios",
+    "BeaconBeam"
   ]
 }

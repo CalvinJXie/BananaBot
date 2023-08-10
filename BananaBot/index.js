@@ -25,8 +25,10 @@ import "./features/Trackers/SkillTracker"
 //Party
 import "./features/Party/Party"
 import "./features/Party/PartyCommands"
-//gui
-import "./features/test"
+//Beacon
+import "./features/Beacon/waypoints"
+import "./features/Beacon/rareMobs"
+//Gui
 import { moveText } from "./features/MoveText"
 //Statistics
 import "./features/Statistics/BinomialDist"

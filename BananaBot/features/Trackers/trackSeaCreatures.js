@@ -13,16 +13,12 @@ fishDict = {
 
 //Lava
 registerWhen(register("chat", ()=>{
-    ChatLib.say(`/pc Thunder spawned at x: ${parseInt(Player.getX())} y: ${parseInt(Player.getY())} z: ${parseInt(Player.getZ())}`)
+    ChatLib.say(`/pc [BananaBotCoordinates] Thunder spawned at x: ${parseInt(Player.getX())} y: ${parseInt(Player.getY())} z: ${parseInt(Player.getZ())}`)
 }).setCriteria("You hear a massive rumble as Thunder emerges."), ()=>settings.displayRareFish);
 
 registerWhen(register("chat", ()=>{
-    ChatLib.say(`/pc Jawbus spawned at x: ${parseInt(Player.getX())} y: ${parseInt(Player.getY())} z: ${parseInt(Player.getZ())}`)
+    ChatLib.say(`/pc [BananaBotCoordinates] Jawbus spawned at x: ${parseInt(Player.getX())} y: ${parseInt(Player.getY())} z: ${parseInt(Player.getZ())}`)
 }).setCriteria("You have angered a legendary creature... Lord Jawbus has arrived."), ()=>settings.displayRareFish);
-
-registerWhen(register("chat", ()=>{
-    ChatLib.say(`/pc Vanquisher spawned at x: ${parseInt(Player.getX())} y: ${parseInt(Player.getY())} z: ${parseInt(Player.getZ())}`)
-}).setCriteria("A Vanquisher is spawning nearby!"), ()=>settings.displayRareFish);
 
 //Regular
 registerWhen(register("chat", ()=>{
@@ -36,7 +32,6 @@ registerWhen(register("chat", ()=>{
 //CH
 registerWhen(register("chat", ()=>{
     fishDict["Zombie Miner"]++;
-    ChatLib.say(`/pc Zombie Miner spawned at x: ${parseInt(Player.getX())} y: ${parseInt(Player.getY())} z: ${parseInt(Player.getZ())}`)
 }).setCriteria("A Zombie Miner surfaces!"), ()=>settings.displayRareFish);
 
 registerWhen(register("chat", ()=>{

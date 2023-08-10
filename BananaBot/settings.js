@@ -12,27 +12,82 @@ import {
         const categories = [
             "Minion Data",
             "QOL",
+            "Kuudra",
+            "Beacon Beams",
             "Trackers",
             "Garden",
             "Economy",
             "Party",
-            "Dungeon",
-            "Nether",
             "Slayer",
             "Statistics",
             "Minion Speeds",
             "Rift",
-            "Farming"
         ];
         return categories.indexOf(a.name) - categories.indexOf(b.name);
     },
 })
 class settings {
+    //Beacon beams
+    @SwitchProperty({
+        name: "Waypoint Beam",
+        description: `Displays waypoint beam at specified other BananaBot coordinate user.`,
+        category: "Beacon Beams",
+        subcategory: "Beams"
+    })
+    showBeam = false
+
+    @SwitchProperty({
+        name: "Vanquisher",
+        description: `Displays vanquisher coordinates.`,
+        category: "Beacon Beams",
+        subcategory: "Nether"
+    })
+    vanqBeam = false
+
+    @SwitchProperty({
+        name: "Gaia Construct",
+        description: `Displays Gaia Construct coordinates.`,
+        category: "Beacon Beams",
+        subcategory: "Diana"
+    })
+    gaiaBeam = false
+
+    @SwitchProperty({
+        name: "Inquisitor",
+        description: `Displays Inquisitor coordinates.`,
+        category: "Beacon Beams",
+        subcategory: "Diana"
+    })
+    inquisBeam = false
+
+    @SwitchProperty({
+        name: "Minos Champion",
+        description: `Displays Minos Champion coordinates.`,
+        category: "Beacon Beams",
+        subcategory: "Diana"
+    })
+    champBeam = false
+
+    @SwitchProperty({
+        name: "Guild Chat",
+        description: `Display coordinates in Guild chat. If neither party/guild chosen then its in whatever chat you are in.`,
+        category: "Beacon Beams",
+        subcategory: "Display Location"
+    })
+    beaconGuild = false
+
+    @SwitchProperty({
+        name: "Party Chat",
+        description: `Display coordinates in Party chat. If neither party/guild chosen then its in whatever chat you are in.`,
+        category: "Beacon Beams",
+        subcategory: "Display Location"
+    })
+    beaconParty = true
     //Kuudra
     @SwitchProperty({
         name: "Kuudra Profit",
         description: `Displays profit per chest.`,
-        category: "Nether",
+        category: "Kuudra",
         subcategory: "Kuudra Profit"
     })
     kuudraProfit = false
@@ -40,7 +95,7 @@ class settings {
     @SwitchProperty({
         name: "Kuudra Teeth Profit",
         description: `Adds teeth into total profit.`,
-        category: "Nether",
+        category: "Kuudra",
         subcategory: "Kuudra Profit"
     })
     kuudraTeeth = false
@@ -48,7 +103,7 @@ class settings {
     @SwitchProperty({
         name: "lvl 100 Kuudra Pet",
         description: `includes lvl 100 pet into essence calculation. Enable if you have one otherwise its base essence amount.`,
-        category: "Nether",
+        category: "Kuudra",
         subcategory: "Kuudra Profit"
     })
     maxKuudraPet = true
@@ -56,7 +111,7 @@ class settings {
     @SwitchProperty({
         name: "Key cost",
         description: `Enable to use Enchanted Mycelium, turn off to use Enchanted Red Sand.`,
-        category: "Nether",
+        category: "Kuudra",
         subcategory: "Kuudra Profit"
     })
     kuudraCalcMyc = true

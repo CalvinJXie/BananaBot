@@ -19,11 +19,6 @@ function calcMelee(basedamage, strength, critdamage, basemultiplier, postmultipl
     ChatLib.chat(`${YELLOW}Pos Multi: ${GREEN}${postmultiplier}`)
     return (5 + basedamage)*(1+(strength/100))*(1+(critdamage/100))*(1+(basemultiplier/100))*(postmultiplier)
 }
-function calcMage(baseAbilityDamage, intelligence, abilityScaling, critdamage, basemultiplier, postmultiplier){
-    if(postmultiplier == 0){postmultiplier = 1;}
-    if(abilityScaling == 0){abilityScaling = 1;}
-    return (baseAbilityDamage)*(1+(intelligence/100)*abilityScaling)*(1+(critdamage/100))*(1+(basemultiplier/100))*(postmultiplier)
-}
 
 multiplicative = {
     bop: 1 + 3.81/100,//book of progress
@@ -164,41 +159,23 @@ register("command", () =>{
     ChatLib.chat(`${YELLOW}rend does ${GREEN}${formatDouble(multi*100)}${YELLOW}% of ${GREEN}${dm} ${YELLOW}= ${GREEN}${dm*multi}`)
 }).setName("ta")
 
-var critDamage = [];
-var nonCritDamage = [];
-
 toggle = false;
 
 registerWhen(register("step", () => {
   const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand");
   const stands = World.getAllEntitiesOfType(EntityArmorStand.class);
   
-  const playerCrit = stands.filter(stand => stand.getName().includes('§f✧'));
-  const playerNonCrit = stands.filter(stand => stand.getName().includes('§7'));
-  
-  critDamage = playerCrit.map(stand => {
-    const damageString = stand.getName().removeFormatting();
-    const damageNumbers = damageString.match(/\d+/g);
-    return damageNumbers ? damageNumbers.join("") : "";
-  });
-
-  nonCritDamage = playerNonCrit.map(stand => {
-    const damageString = stand.getName().removeFormatting();
-    const damageNumbers = damageString.match(/\d+/g);
-    return damageNumbers ? damageNumbers.join("") : "";
-  });
-}), () => toggle);
-
-function displayDamage() {
-  if (critDamage.length > 0 && critDamage[0] !== 'undefined') {
-    ChatLib.chat(`Crit Damage: ${critDamage[0]}`);
+  const playerCrit = stands.find(stand => stand.getName().includes('§f✧'));
+  const playerNonCrit = stands.find(stand => stand.getName().indexOf('§7') == 0);
+  //✧4,838✧
+  if(playerCrit != undefined){
+    crit = playerCrit.getName().removeFormatting().replace(/✧/g, "");
+    ChatLib.chat(`Crit: ${crit}`)
+  }else if(playerNonCrit != undefined){
+    nonCrit = playerNonCrit.getName().removeFormatting()
+    ChatLib.chat(`Non Crit: ${nonCrit}`)
   }
-  if (nonCritDamage.length > 0 && nonCritDamage[0] !== 'undefined') {
-    ChatLib.chat(`Non Crit Damage: ${nonCritDamage[0]}`);
-  }
-}
-
-registerWhen(register("tick", displayDamage), ()=> toggle);
+}).setDelay(1), () => toggle);
 
 register("command", (args)=>{
     switch(args){
@@ -216,7 +193,17 @@ register("command", (args)=>{
     }
 }).setName("dmg")
 
+//baseability damage is red text in abilities damage area
+//hpb does nothing
+function calcMage(baseAbilityDamage, intelligence, abilityScaling, critdamage, basemultiplier, postmultiplier){
+    if(postmultiplier == 0){postmultiplier = 1;}
+    if(abilityScaling == 0){abilityScaling = 1;}
+    return (baseAbilityDamage)*(1+(intelligence/100)*abilityScaling)*(1+(critdamage/100))*(1+(basemultiplier/100))*(postmultiplier)
+}
 
+register("command", ()=>{
+    ChatLib.chat(calcMage(15000, 1000, 0.3, 100, 0, 0));
+}).setName("mm")
 /*
 {name=§781,921
 Entity{name=§f✧§f1§e0§61§c,§c8§f2§f5§e✧, x=-61.8125, y=102.4375, z=52.5},
