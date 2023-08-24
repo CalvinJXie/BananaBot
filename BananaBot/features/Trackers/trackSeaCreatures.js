@@ -51,6 +51,15 @@ registerWhen(register("chat", ()=>{
     fishDict["Grim Reaper"]++;
 }).setCriteria("This can't be! The manifestation of death himself!"), ()=>settings.displayRareFish);
 
+//Winter
+registerWhen(register("chat", ()=>{
+    ChatLib.say(`/pc Reindrake Spawned!`)
+}).setCriteria("A Reindrake forms from the depths."), ()=>settings.displayRareFish);
+
+registerWhen(register("chat", ()=>{
+    ChatLib.say(`/pc [BananaBotCoordinates] Yeti spawned at x: ${parseInt(Player.getX())} y: ${parseInt(Player.getY())} z: ${parseInt(Player.getZ())}`)
+}).setCriteria("What is this creature!?"), ()=>settings.displayRareFish);
+
 function getString(){
     allString = "";
     Object.keys(fishDict).forEach((fish)=>{

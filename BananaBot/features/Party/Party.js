@@ -79,8 +79,8 @@ register("chat", (player1, player2) => {//party promote
     if(data.Party.Leader == ""){
         data.Party.Leader = player1;
     }
-}).setCriteria("${player1} invited ${player2} ${after}")
-//
+}).setChatCriteria("${player1} &r&einvited ${player2} &r&eto the party! They have &r&c60 &r&eseconds to accept.&r")
+
 register("chat", (player1, player2) => {//party transfer manual
     player1 = getPlayerName(player1);
     player2 = getPlayerName(player2);

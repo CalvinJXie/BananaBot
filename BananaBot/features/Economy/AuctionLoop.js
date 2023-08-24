@@ -48,11 +48,6 @@ registerWhen(register("step", () => {
 function findAh(pages, price, itemName, itemLore){
   pagesChecked = 0;
   price *= 1000000
-  itemName = itemName.toLowerCase();
-  ChatLib.chat(`${LOGO}${YELLOW}You looked for ${GRAY}${itemName}(s) ${YELLOW}with prices under ${GRAY}${price} ${YELLOW}over ${GRAY}${pages} ${YELLOW}auction pages.`)
-  if(itemLore != undefined){
-    ChatLib.chat(`${LOGO}${YELLOW}With ${GRAY}${itemLore} ${YELLOW}inside the item's lore.`)
-  }
   for(let p = 0;p<=pages;p++){
     apiAh = `https://api.hypixel.net/skyblock/auctions?page=${p}`
     request({
@@ -64,22 +59,41 @@ function findAh(pages, price, itemName, itemLore){
       for(let i = 0;i<auctions.length;i++){
         let auction = auctions[i];
         item = auction.item_name.toLowerCase();
-        if(auction.bin && auction.starting_bid <= price && item.includes(itemName)){
-          if(itemLore != undefined){
-            lore = auction.item_lore.toLowerCase();
-            itemLore = itemLore.toLowerCase();
-            if(lore.includes(itemLore)){
+        function displayAuctions(items, lores){
+          items = items.toLowerCase().replace(/_/g, " ");
+          if(auction.bin && auction.starting_bid <= price && item.includes(items)){
+            if(lores != undefined){
+              lore = auction.item_lore.toLowerCase();
+              lores = lores.toLowerCase().replace(/_/g, " ");
+              if(lore.includes(lores)){
+                ChatLib.chat(`\n${LOGO}${YELLOW}Item: ${auction.item_name}`)
+                ChatLib.chat(`\n${LOGO}${YELLOW}Lore: ${lores}`)
+                ChatLib.chat(`${LOGO}${YELLOW}Price: ${auction.starting_bid}`)
+                new TextComponent(`${LOGO}${GREEN}[VIEW]`).setClick("run_command", `/viewauction ${auction.uuid}`).chat();
+              }
+            }else{
               ChatLib.chat(`\n${LOGO}${YELLOW}Item: ${auction.item_name}`)
               ChatLib.chat(`${LOGO}${YELLOW}Price: ${auction.starting_bid}`)
               new TextComponent(`${LOGO}${GREEN}[VIEW]`).setClick("run_command", `/viewauction ${auction.uuid}`).chat();
-              storedAh.push(auction.uuid);
             }
-          }else{
-            ChatLib.chat(`\n${LOGO}${YELLOW}Item: ${auction.item_name}`)
-            ChatLib.chat(`${LOGO}${YELLOW}Price: ${auction.starting_bid}`)
-            new TextComponent(`${LOGO}${GREEN}[VIEW]`).setClick("run_command", `/viewauction ${auction.uuid}`).chat();
-            storedAh.push(auction.uuid);
           }
+        }
+        if(typeof itemName === "object" && typeof itemLore === "object"){
+          itemName.forEach((searchItem)=>{
+            itemLore.forEach((searchLore)=>{
+              displayAuctions(searchItem, searchLore);
+            })
+          })
+        }else if(typeof itemName === "object"){
+          itemName.forEach((searchItem)=>{
+            displayAuctions(searchItem, itemLore)
+          })
+        }else if(typeof itemLore === "object"){
+          itemLore.forEach((searchLore)=>{
+            displayAuctions(itemName, searchLore)
+          })
+        }else{
+          displayAuctions(itemName, itemLore);
         }
       }
       if(pagesChecked == pages){
@@ -91,9 +105,8 @@ function findAh(pages, price, itemName, itemLore){
     })
   }
 }
-let storedAh;
+
 register("command", (...args)=>{
-  storedAh = [];
   if(args[3]){
     args[2] = args[2].replace(/_/g, " ");
     args[3] = args[3].replace(/_/g, " ");
@@ -109,11 +122,27 @@ ${LOGO}There are usually 50 auction pages. /ahpages to see max pages you can inp
   }
 }).setName("ahf")
 
-register("command", ()=>{
-  storedAh.forEach((uuid)=>{
-    ChatLib.chat(`/viewauction ${uuid}`)
-  })
-}).setName("ahl")
+register("command", (args)=>{
+  if(args == undefined){
+    ChatLib.chat(`${LOGO}${YELLOW}Available Args: mf, (lf/fort)`)
+  }
+  items =  ["molten_belt", "molten_bracelet"];
+  if(args == "mfv"){
+    lore = "magic_find_V"
+    findAh(58, 15, "molten_belt", lore);
+  }else if(args == "mfiv"){
+    lore = "magic_find_IV"
+    findAh(58, 8, "molten_belt", lore);
+  }else if(args == "lfv"){
+    lore = ["lifeline_V", "fortitude_V"];
+    findAh(58, 4, items, lore);
+  }else if(args == "lfiv"){
+    lore = ["lifeline_IV", "fortitude_IV"];
+    findAh(58, 2, item, lore)
+  }else{
+    ChatLib.chat(`${LOGO}${YELLOW}Available Args: mfv, mfiv, lfv lfiv`)
+  }
+}).setName("aah")
 
 register("command", ()=>{
   request({

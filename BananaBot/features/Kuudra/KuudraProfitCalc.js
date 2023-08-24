@@ -179,3 +179,10 @@ registerWhen(register("postGuiRender", (x, y, guiType)=>{
     if(inv.getName().indexOf("Paid Chest") == -1) return;
     Renderer.drawString(displayString, data.locations.KPL[0], data.locations.KPL[1])
 }),()=>finishedKuudra && settings.kuudraProfit);
+
+register("command", ()=>{
+    const updatePage = 'http://bananabot.pythonanywhere.com/update-auction'
+    axios.get(updatePage).then((response)=>{
+        ChatLib.chat(response.data)
+    })
+  }).setName("uah")

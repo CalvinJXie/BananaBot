@@ -1,10 +1,10 @@
-const itemRotation = [
-    "Priceless The Fish",
-    "Clover Helmet",
-    "Giant Fishing Rod",
-    "Racing Helmet",
-    "Dirt Rod",
-    "Wizard Wand"
-]
+current = "Giant Fishing Rod"
 
-currentItem = "Dirt Rod"
+const shenRotation = [
+    "Dirt Rod",
+    "Racing Helmet",
+    "Priceless The Fish",
+    "Giant Fishing Rod",
+    "Wizard Wand",
+    "Clover Helmet",
+]

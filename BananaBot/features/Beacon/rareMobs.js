@@ -14,12 +14,11 @@ registerWhen(register("chat", ()=>{
 
 registerWhen(register("chat", ()=>{
     const stands = World.getAllEntitiesOfType(EntityArmorStand.class);
-    const player = Player.getName();
     const inquis = stands.find(stand => stand.getName().includes("Inquisitor"));
     if(inquis != undefined && settings.inquisBeam){
         xDiff = Math.abs(inquis.getX() - Player.getX());
         zDiff = Math.abs(inquis.getZ() - Player.getZ());
-        if(xDiff <= 20 && yDiff <= 20){
+        if(xDiff <= 20 && zDiff <= 20){
             sendCoords("Inquisitor")
         }
     }else if(settings.champBeam){

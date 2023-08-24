@@ -19,10 +19,6 @@ function checkInParty(line, command){
   }
 }
 
-registerWhen(register("chat", () => {
-    ChatLib.say(`MAY DAY MAY DAY I AM IN LIMBO PLEASE UNLIMBO ME`)
-}).setChatCriteria("&cYou were spawned in Limbo.&r"), () =>settings.PartyCommands)
-
 registerWhen(register("chat", (before) => {
   line = "/pc Moooooooooo"
   checkInParty(before, line)
@@ -66,9 +62,9 @@ registerWhen(register("chat", (before) => {
   checkInParty(before, "/p settings allinvite")
 }).setCriteria("${before}!allinvite"), () =>settings.PartyCommands)
 
-registerWhen(register("chat", (player) => {
+registerWhen(register("chat", (before, player) => {
   if(data.Party.Leader != Player.getName()) return;
-  checkInParty(before, `/p ${player.substring(0, player.indexOf(" "))}`)
+  checkInParty(before, `/p ${player}`)
 }).setCriteria("${before}!invite ${player}"), () =>settings.PartyCommands)
 
 registerWhen(register("chat", () => {
@@ -79,4 +75,3 @@ registerWhen(register("chat", () => {
 registerWhen(register("chat", (before) => {
   checkInParty(before, settings.CustomPartyMessage)
 }).setCriteria("${before}"+settings.CustomPartyName), () =>settings.PartyCommands && settings.CustomPartyName != "")
-

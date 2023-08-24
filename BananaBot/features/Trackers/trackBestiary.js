@@ -30,10 +30,12 @@ registerWhen(register('step', ()=>{
 
     bestiaryArea = inv.getName().substring(arrowIndex+2, inv.getName().length);
     
-    if(inv.getName().includes("Fishing") && seenBestiary[`${bestiaryArea} Fishing`]) return;
-    if(seenBestiary[bestiaryArea]) return;
+    if(inv.getName().includes("Fishing") && seenBestiary[`${bestiaryArea} Fishing`]) {
+        return;
+    }else if(seenBestiary[bestiaryArea] && !inv.getName().includes("Fishing")) {
+        return;
+    }
     if(bestiaryArea == "Fishing" && inv.getName().indexOf("Fishing") != 0)return;
-    
     if(bestiaryArea === "Fishing"){
         bestiaryArea = "Regular";
     }
@@ -130,17 +132,23 @@ register("command", (...args) =>{
                 if(args[1] == "all"){
                     ChatLib.chat(`${LOGO}reset bestiary`)
                     removeData("bestiary");
-                }else{
-                    if(searchDict(bestiary)){
+                }else if(args[1] != undefined){
+                    if(searchDict(bestiary, args[1])){
                         removeData("bestiary", found);
                         ChatLib.chat(`${LOGO}Cleared ${YELLOW}${found}`)
                     }else{
                         ChatLib.chat(`${LOGO}keyword was not found.`)
                     }  
+                }else{
+                    ChatLib.chat(`${LOGO}${YELLOW}Invalid argument.`)
                 }
                 break;
             case "show":
-                console.log(JSON.stringify(bestiary, false, 2))
+                if(bestiary == undefined){
+                    console.log("Empty")
+                }else{
+                    console.log(JSON.stringify(bestiary, false, 2))
+                }
                 break;
             case "test":
                 console.log(searchDict(bestiary, args[1]));

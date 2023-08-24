@@ -29,6 +29,7 @@ import "./features/Party/PartyCommands"
 import "./features/Beacon/waypoints"
 import "./features/Beacon/rareMobs"
 //Gui
+import "./features/test"
 import { moveText } from "./features/MoveText"
 //Statistics
 import "./features/Statistics/BinomialDist"
@@ -154,10 +155,11 @@ calc pet exp to coin
 tax calculator
 shen tracker
 shen special tracker
-
+change ah api to cronjob that loops page 0 every 2 min / latest
 change skills to a class maybe?
 
-Leet Code :)
+chili to collection/actions to chili
+add args to /gaba for total craft
 `
 register("command", () => ChatLib.chat(todoList)).setName("todo");
 register("command", () => ChatLib.chat(data.world)).setName("ww");

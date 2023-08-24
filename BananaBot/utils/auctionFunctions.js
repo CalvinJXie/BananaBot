@@ -56,4 +56,3 @@ export function findAhPrice(itemName, auctionInfo) {
     return fetchLowestItemPrice(itemName);
   }
 }
-

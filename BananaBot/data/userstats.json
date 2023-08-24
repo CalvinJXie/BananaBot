@@ -1,94 +1,23 @@
 {
   "bestiary": {
-    "Fishing": {
-      "Regular": {
-        "Agarimoo": 1964,
-        "Night Squid": 588,
-        "Oasis Rabbit": 257,
-        "Oasis Sheep": 199,
-        "Poisoned Water Worm": 838,
-        "Squid": 3618,
-        "Water Worm": 830,
-        "Zombie Miner": 102
-      },
-      "Lava": {
-        "Lord Jawbus": 227,
-        "Thunder": 69
-      },
-      "Spooky Festival": {
-        "Grim Reaper": 51,
-        "Nightmare": 233,
-        "Phantom Fisher": 81,
-        "Scarecrow": 2934,
-        "Werewolf": 583
-      },
-      "Fishing Festival": {
-        "Nurse Shark": 862,
-        "Tiger Shark": 94
-      },
-      "Winter": {
-        "Frosty": 2587,
-        "Frozen Steve": 2300,
-        "Grinch": 170,
-        "Nutcracker": 312,
-        "Reindrake": 99
-      }
+    "Hub": {
+      "Old Wolf": 2607,
+      "Wolf": 27245
     },
-    "Mythological Creatur": {
-      "Gaia Construct": 1199,
-      "Minos Inquisitor": 402
+    "Spider's Den": {
+      "Arachne": 124,
+      "Brood Mother": 379,
+      "Dasher Spider": 849,
+      "Silverfish": 28054,
+      "Spider Jockey": 5093,
+      "Voracious Spider": 585,
+      "Weaver Spider": 1481
     },
-    "Kuudra": {
-      "Blight": 8110,
-      "Explosive Imp": 9881,
-      "Inferno Magma Cube": 8007,
-      "Kuudra Berserker": 9506,
-      "Kuudra Follower": 23108,
-      "Kuudra Knocker": 8746,
-      "Kuudra Landmine": 9030,
-      "Wandering Blaze": 927
-    },
-    "Jerry": {
-      "Blue Jerry": 14,
-      "Golden Jerry": 4,
-      "Green Jerry": 51
-    },
-    "The Catacombs": {
-      "Angry Archeologist": 8072,
-      "Crypt Souleater": 4457,
-      "Fels": 8561,
-      "King Midas": 754,
-      "Lonely Spider": 15620,
-      "Lost Adventurer": 5019,
-      "Mimic": 477,
-      "Scared Skeleton": 1504,
-      "Shadow Assassin": 5706,
-      "Sniper": 1213,
-      "Super Archer": 2605,
-      "Terracotta": 35154,
-      "Wither Husk": 6718,
-      "Zombie Knight": 10087,
-      "Zombie Lord": 410
-    },
-    "Spooky Festival": {
-      "Crazy Witch": 724,
-      "Headless Horseman": 269,
-      "Phantom Spirit": 662,
-      "Scary Jerry": 702,
-      "Trick or Treater": 676,
-      "Wither Gourd": 474,
-      "Wraith": 714
-    },
-    "Crystal Hollows": {
-      "Automaton": 8606,
-      "Bal": 231,
-      "Sludge": 5610,
-      "Thyst": 1211,
-      "Worm": 118,
-      "Yog": 2644
-    },
-    "Dwarven Mines": {
-      "Ghost": 238564
+    "The End": {
+      "Dragon": 860,
+      "Endstone Protector": 416,
+      "Obsidian Defender": 15665,
+      "Zealot": 28126
     },
     "Crimson Isle": {
       "Ashfang": 908,
@@ -105,30 +34,71 @@
       "Wither Skeleton": 8546,
       "Wither Spectre": 5000
     },
-    "The End": {
-      "Dragon": 888,
-      "Endstone Protector": 418,
-      "Obsidian Defender": 15980,
-      "Watcher": 743,
-      "Zealot": 29002
+    "Dwarven Mines": {
+      "Ghost": 238564
     },
-    "Spider's Den": {
-      "Arachne": 186,
-      "Arachne's Keeper": 249,
-      "Brood Mother": 388,
-      "Dasher Spider": 1005,
-      "Silverfish": 28226,
-      "Spider Jockey": 5159,
-      "Voracious Spider": 821,
-      "Weaver Spider": 1601
+    "Crystal Hollows": {
+      "Automaton": 8605,
+      "Bal": 215,
+      "Sludge": 3909,
+      "Worm": 118,
+      "Yog": 1368
     },
-    "Hub": {
-      "Old Wolf": 2640,
-      "Wolf": 27433
+    "Spooky Festival": {
+      "Crazy Witch": 722,
+      "Headless Horseman": 269,
+      "Phantom Spirit": 659,
+      "Scary Jerry": 701,
+      "Trick or Treater": 673,
+      "Wither Gourd": 474,
+      "Wraith": 711
     },
-    "Your Island": {
-      "Creeper": 135,
-      "Witch": 161
+    "Fishing": {
+      "Regular": {
+        "Night Squid": 586,
+        "Poisoned Water Worm": 673,
+        "Squid": 2450,
+        "Water Worm": 630
+      },
+      "Lava": {
+        "Lord Jawbus": 218,
+        "Thunder": 43
+      },
+      "Spooky Festival": {
+        "Grim Reaper": 11,
+        "Scarecrow": 1648,
+        "Werewolf": 231
+      },
+      "Fishing Festival": {
+        "Nurse Shark": 862,
+        "Tiger Shark": 94
+      },
+      "Winter": {
+        "Frosty": 2587,
+        "Frozen Steve": 2300,
+        "Grinch": 170,
+        "Nutcracker": 312,
+        "Reindrake": 99
+      }
+    },
+    "Mythological Creatur": {
+      "Gaia Construct": 1123,
+      "Minos Inquisitor": 393
+    },
+    "Jerry": {
+      "Blue Jerry": 14,
+      "Golden Jerry": 4,
+      "Green Jerry": 51
+    },
+    "Kuudra": {
+      "Blight": 8110,
+      "Explosive Imp": 9881,
+      "Inferno Magma Cube": 8007,
+      "Kuudra Berserker": 9506,
+      "Kuudra Follower": 23108,
+      "Kuudra Knocker": 8746,
+      "Kuudra Landmine": 9030,
+      "Wandering Blaze": 927
     }
   }
 }
