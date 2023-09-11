@@ -124,24 +124,22 @@ ${LOGO}There are usually 50 auction pages. /ahpages to see max pages you can inp
 
 register("command", (args)=>{
   if(args == undefined){
-    ChatLib.chat(`${LOGO}${YELLOW}Available Args: mf, (lf/fort)`)
+    ChatLib.chat(`${LOGO}${YELLOW}Available Args: (lf/fort)`)
   }
-  items =  ["molten_belt", "molten_bracelet"];
-  if(args == "mfv"){
-    lore = "magic_find_V"
-    findAh(58, 15, "molten_belt", lore);
-  }else if(args == "mfiv"){
-    lore = "magic_find_IV"
-    findAh(58, 8, "molten_belt", lore);
-  }else if(args == "lfv"){
-    lore = ["lifeline_V", "fortitude_V"];
-    findAh(58, 4, items, lore);
-  }else if(args == "lfiv"){
-    lore = ["lifeline_IV", "fortitude_IV"];
-    findAh(58, 2, item, lore)
-  }else{
-    ChatLib.chat(`${LOGO}${YELLOW}Available Args: mfv, mfiv, lfv lfiv`)
-  }
+  request({
+    url: 'https://api.hypixel.net/skyblock/auctions',
+    json: true
+  }).then((response)=>{
+    pages = response.totalPages
+    items =  ["molten_belt", "molten_bracelet"];
+    if(args == "lfv"){
+      findAh(pages, 8, items, "lifeline_V");
+    }else if(args == "lfiv"){
+      findAh(pages, 4, items, "lifeline_IV")
+    }else{
+      ChatLib.chat(`${LOGO}${YELLOW}Available Args: mfv, mfiv, lfv lfiv`)
+    }
+  })
 }).setName("aah")
 
 register("command", ()=>{

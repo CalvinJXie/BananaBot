@@ -148,15 +148,19 @@ function findWorld(){
     }
 }
 
-register("command", () => console.log(TabList.getNames())).setName("yy");
-
 todoList = `Todo:
 calc pet exp to coin
-tax calculator
+
 shen tracker
 shen special tracker
-change ah api to cronjob that loops page 0 every 2 min / latest
+
 change skills to a class maybe?
+
+garden copper total / visitor / data store in userdata
+
+statistical analysis of attribute crafting profit
+
+dugeon chest profit
 
 chili to collection/actions to chili
 add args to /gaba for total craft

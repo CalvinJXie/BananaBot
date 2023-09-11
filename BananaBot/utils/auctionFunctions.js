@@ -56,3 +56,39 @@ export function findAhPrice(itemName, auctionInfo) {
     return fetchLowestItemPrice(itemName);
   }
 }
+export  const m = 1000000;
+export  const k = 1000;
+export  const b = 1000000000;
+export function tax(listPrice, d){
+  if(d==undefined){
+    d = 6;
+  }
+  //duration fee
+  duration = {
+    1: 20,
+    6: 45,
+    12: 100,
+    24: 350,
+    48: 1200,
+    336: 55200
+  }
+  durFee = duration[d];
+
+  //claiming fee
+  if(listPrice > 1*m){
+      claimFee = listPrice*.01;
+  }
+
+  //calculates listing fee
+  if(listPrice <= 10*m){
+      listFee = listPrice*.01;
+  }else if(listPrice <= 100*m){
+      listFee = listPrice*.02;
+  }else if(listPrice > 100*m){
+      listFee = listPrice*.025;
+  }
+
+  //total fee
+  totalFee = listFee+claimFee+durFee;
+  return [listFee, claimFee, durFee, totalFee];
+}

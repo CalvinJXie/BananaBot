@@ -1,6 +1,6 @@
 import settings from "../../settings";
 import { data } from "../../utils/variables";
-import { getPlayerName, registerWhen } from "../../utils/functions";
+import { getPlayerName, registerWhen, formatInt } from "../../utils/functions";
 
 function checkInParty(line, command){
   if(line.indexOf("Party >") == -1) return;
@@ -25,6 +25,11 @@ registerWhen(register("chat", (before) => {
 }).setCriteria("${before}!meow"), () =>settings.PartyCommands)
 
 registerWhen(register("chat", (before) => {
+  line = `/pc [BananaBotCoordinates] x: ${formatInt(Player.getX())}, y: ${formatInt(Player.getY())}, z: ${formatInt(Player.getZ())}`
+  checkInParty(before, line)
+}).setCriteria("${before}!coords"), () =>settings.PartyCommands)
+
+registerWhen(register("chat", (before) => {
   checkInParty(before, "/pc caw caw caw im a duck")
 }).setCriteria("${before}?warp"), () =>settings.PartyCommands)
 
@@ -42,7 +47,6 @@ registerWhen(register("chat", (before) => {
 
 registerWhen(register("chat", (before) => {
   let player = getPlayerName(before)
-  ChatLib.chat(player);
   if(player == Player.getName()) return;
   checkInParty(before, `/p transfer ${player}`)
 }).setCriteria("${before}: !transfer"), () =>settings.PartyCommands)
@@ -67,10 +71,26 @@ registerWhen(register("chat", (before, player) => {
   checkInParty(before, `/p ${player}`)
 }).setCriteria("${before}!invite ${player}"), () =>settings.PartyCommands)
 
-registerWhen(register("chat", () => {
+registerWhen(register("chat", (before, tier) => {
   if(data.Party.Leader != Player.getName()) return;
-  ChatLib.say("/instancerequeue")
-}).setCriteria("${before}!reque ${after}"), () =>settings.PartyCommands)
+  switch(parseInt(tier)){
+    case 5:
+      ChatLib.say("/joininstance kuudra_infernal")
+      break;
+    case 4:
+      ChatLib.say("/joininstance kuudra_fiery")
+      break;
+    case 3:
+      ChatLib.say("/joininstance kuudra_burning")
+      break;
+    case 2:
+      ChatLib.say("/joininstance kuudra_hot")
+      break;
+    case 1:
+      ChatLib.say("/joininstance kuudra_basic")
+      break;
+  }
+}).setCriteria("${before}!t${tier}"), () =>settings.PartyCommands)
 
 registerWhen(register("chat", (before) => {
   checkInParty(before, settings.CustomPartyMessage)

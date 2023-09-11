@@ -1,14 +1,17 @@
-list = []
-i = 0;
-register("command", ()=>{
-    const EntityArmorStand = Java.type("net.minecraft.entity.player.EntityPlayer");
-    const stands = World.getAllEntitiesOfType(EntityArmorStand.class);
-    stands.forEach((stand)=>{
-        list.push(`[BananaBotCoordinates] ${stand.getName()} x: ${stand.getX()}, y: ${stand.getY()}, z:${stand.getZ()}`)
-    })
-}).setName("aa")
+import { tax, b } from "../utils/auctionFunctions"
 
 register("command", ()=>{
-    ChatLib.say(list[i]);
-    i++;
-}).setName("qq")
+    list = tax(3.689*b);
+    ChatLib.chat(`List: ${list[0]}`)
+    ChatLib.chat(`claim: ${list[1]}`)
+    ChatLib.chat(`dur: ${list[2]}`)
+    ChatLib.chat(`Total: ${list[3]}`)
+}).setName("aa")
+
+
+/*
+Bin Auction Listing Fees have been changed for certain price brackets:
+1% for items <10,000,000 coins (unchanged)
+2% for items <100,000,000 coins
+2.5% for items >100,000,000 coins
+*/

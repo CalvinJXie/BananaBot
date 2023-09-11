@@ -236,6 +236,14 @@ class settings {
         subcategory: "Dailies"
     })
     trackVisitor = false;
+
+    @SwitchProperty({
+        name: "Track Active Raffle",
+        description: `Enable to track Active Raffle. Make sure it says added Raffle Timer in chat.`,
+        category: "Trackers",
+        subcategory: "Dailies"
+    })
+    trackRaffle = false;
     //Garden
     @SwitchProperty({
         name: "Visitor Profit",

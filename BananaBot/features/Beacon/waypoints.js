@@ -1,5 +1,5 @@
 import renderBeaconBeam2 from "../../../BeaconBeam"
-import { registerWhen, setRegisters } from "../../utils/functions";
+import { formatInt, registerWhen, setRegisters } from "../../utils/functions";
 import settings from "../../settings";
 
 x = 0;
@@ -34,3 +34,7 @@ registerWhen(register("step", ()=>{
     z = 0;
     setRegisters();
 }).setDelay(60), ()=>x != 0 && y != 0 && z != 0)
+
+register("command", ()=>{
+    ChatLib.say(`/pc [BananaBotCoordinates] x: ${formatInt(Player.getX())}, y: ${formatInt(Player.getY())}, z: ${formatInt(Player.getZ())}`)
+}).setName("bbc")

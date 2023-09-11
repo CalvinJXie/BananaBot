@@ -1,5 +1,5 @@
 import settings from "../../settings"
-import { registerWhen } from "../../utils/functions";
+import { registerWhen, setRegisters } from "../../utils/functions";
 
 let toggle = false;
 
@@ -15,8 +15,13 @@ Keybind.registerKeyPress(() => {
     toggle = !toggle;
     if(!toggle){ChatLib.chat("toggle off")}
     else{ChatLib.chat("toggle on")}
+    setRegisters();
 })
 
 registerWhen(register('step', ()=>{
     ChatLib.command(settings.command);
-}).setDelay(settings.commandTime), () => toggle)
+}).setDelay(parseInt(settings.commandTime)), () => toggle)
+
+register("command", (args)=>{
+    ChatLib.command(`tptoplot ${args}`);
+}).setName("ttp")

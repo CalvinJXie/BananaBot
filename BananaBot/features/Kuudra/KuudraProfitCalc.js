@@ -45,6 +45,7 @@ function capWord(str){
 
 register("command", ()=>{
     finishedKuudra = !finishedKuudra;
+    updateVars();
 }).setName("pp")
 
 //kuudra ends
@@ -63,7 +64,7 @@ registerWhen(register("step", () =>{
     inv = Player.getContainer();
     if(displayString != "") return;
     if(inv == undefined) return;
-    if(inv.getName().indexOf("Paid Chest") == -1) return;//Paid Chest
+    //if(inv.getName().indexOf("Paid Chest") == -1) return;//Paid Chest
     primarySlot = inv.getStackInSlot(11).getNBT().toObject();
     secondarySlot = inv.getStackInSlot(12).getNBT().toObject();
     essenceSlot = inv.getStackInSlot(14).getNBT().toObject();
@@ -77,7 +78,9 @@ registerWhen(register("step", () =>{
     primaryPrice = 0;
     //getting primary price
     primaryName = primarySlot.tag.display.Name.removeFormatting();
-    if(!primaryName.includes("Staff")){
+    if(primaryName == "Mandraa"){
+        primaryPrice = priceBuyOrder["MANDRAA"];
+    }else if(!primaryName.includes("Staff")){
         primaryAttributes = primarySlot.tag.ExtraAttributes.attributes;
         attrKeys = Object.keys(primaryAttributes);
         tier1 = primaryAttributes[attrKeys[0]]
@@ -185,4 +188,4 @@ register("command", ()=>{
     axios.get(updatePage).then((response)=>{
         ChatLib.chat(response.data)
     })
-  }).setName("uah")
+}).setName("uah")

@@ -224,4 +224,4 @@ register("chat", () => {
 
 register("command", (args)=>{
     ChatLib.say(`/p transfer ${args}`)
-}).setName("pt")
+}).setName("pt", true)

@@ -16,7 +16,7 @@ export let data = new PogObject("BananaBot", {
     "Party":{"Leader":"", "Members":[]},
     "PartyWL": [],
     "PartyBL": [],
-    "daily": {"cake":0, "eyedrop":0, "matriarch":0, "feeder":0, "hiker":0, "visitor":0},
+    "daily": {"cake":0, "eyedrop":0, "matriarch":0, "feeder":0, "hiker":0, "visitor":0, "raffle": 0},
     "world": ""
 }, "userdata.json")
 

@@ -52,6 +52,13 @@ registerWhen(register("chat", () =>{
 }).setCriteria("Yum! You gain ${cakeType} for ${time} hours!"), () => settings.trackDaily)
 
 registerWhen(register("chat", () =>{
+    if(checkTime(1000, data.daily.raffle)){
+        data.daily.raffle = newTime();
+        ChatLib.chat(`${YELLOW}added Active Raffle timer`)
+    }
+}).setCriteria("ACTIVE PLAYER! ${after}"), () => settings.trackDaily)
+
+registerWhen(register("chat", () =>{
     if(checkTime(86400, data.daily.matriarch)){
         data.daily.matriarch = newTime();
         ChatLib.chat(`${YELLOW}added Matriarch Perfume timer`)
@@ -91,6 +98,7 @@ registerWhen(register("step", () =>{
     cakeTimer = convertTime(remainTime(172800, data.daily.cake));
     eyedropTimer = convertTime(remainTime(86400, data.daily.eyedrop));
     hikerTimer = convertTime(remainTime(43200, data.daily.hiker));
+    raffleTimer = convertTime(remainTime(1200, data.daily.raffle))
     if(data.world == "Garden"){
         visitTime = getVisitorTime()*1000;
         visitorTimer = convertTime(visitTime);
@@ -105,6 +113,7 @@ registerWhen(register("step", () =>{
     if(settings.trackEyedrop) fullstring += timeString("Capsaicin Eyedrops", eyedropTimer);
     if(settings.trackHiker) fullstring += timeString("Hungry Hiker", hikerTimer);
     if(settings.trackVisitor) fullstring += timeString("Garden Visitor", visitorTimer);
+    if(settings.trackRaffle) fullstring += timeString("Active Raffle", raffleTimer);
     if(settings.trackRemind && remindName) fullstring += timeString(remindName, convertTime(remindStart-newTime()))
     displayString = fullstring
 }).setFps(1), () => settings.dailyDisplay)
@@ -136,6 +145,9 @@ register("command", (args)=>{
         case "remind":
             remindStart = 0;
             remindName = 0;
+            break;
+        case "raffle":
+            data.daily.raffle = newTime();
             break;
         default:
             ChatLib.chat(`${YELLOW}/dailyreset or /dr (cake, hiker, visitor, matriarch, eyedrop, feeder, remind)`)
