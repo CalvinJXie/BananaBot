@@ -225,3 +225,7 @@ register("chat", () => {
 register("command", (args)=>{
     ChatLib.say(`/p transfer ${args}`)
 }).setName("pt", true)
+
+register("command", ()=>{
+    ChatLib.say(`/warp dungeon_hub`)
+}).setName("dh")

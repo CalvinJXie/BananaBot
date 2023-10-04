@@ -125,7 +125,7 @@ export const minionActions = {
     'zombie1':26, 'zombie2':26, 'zombie3':24, 'zombie4':24, 'zombie5':22, 'zombie6':22, 'zombie7':20, 'zombie8':20, 'zombie9':17, 'zombie10':17, 'zombie11':13,
     'revenant1':29, 'revenant2':29, 'revenant3':26, 'revenant4':26, 'revenant5':23, 'revenant6':23, 'revenant7':19, 'revenant8':19, 'revenant9':14.5, 'revenant10':14.5, 'revenant11':10, 'revenant12':8,
     'voidling1':45, 'voidlin2':45, 'voidling3':42, 'voidling4':42, 'voidling5':39, 'voidling6':39, 'voidling7':35, 'voidling8':35, 'voidling9':30, 'voidling10':30, 'voidling11':24,
-    'inferno1':1102, 'inferno2':1068, 'inferno3':1033, 'inferno4':999, 'inferno5':964, 'inferno6':930, 'inferno7':895, 'inferno8':861, 'inferno9':827, 'inferno10':792, 'inferno11':758,
+    'inferno1':1013, 'inferno2':982, 'inferno3':950, 'inferno4':919, 'inferno5':886, 'inferno6':855, 'inferno7':823, 'inferno8':792, 'inferno9':760, 'inferno10':728, 'inferno11':697,
     'skeleton1':26, 'skeleton2':26, 'skeleton3':24, 'skeleton4':24, 'skeleton5':22, 'skeleton6':22, 'skeleton7':20, 'skeleton8':20, 'skeleton9':17, 'skeleton10':17, 'skeleton11':13,
     'creeper1':27, 'creeper2':27, 'creeper3':25, 'creeper4':25, 'creeper5':23, 'creeper6':23, 'creeper7':21, 'creeper8':21, 'creeper9':18, 'creeper10':18, 'creeper11':14,
     'spider1':26, 'spider2':26, 'spider3':24, 'spider4':24, 'spider5':22, 'spider6':22, 'spider7':20, 'spider8':20, 'spider9':17, 'spider10':17, 'spider11':13,

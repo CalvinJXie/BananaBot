@@ -95,3 +95,11 @@ registerWhen(register("chat", (before, tier) => {
 registerWhen(register("chat", (before) => {
   checkInParty(before, settings.CustomPartyMessage)
 }).setCriteria("${before}"+settings.CustomPartyName), () =>settings.PartyCommands && settings.CustomPartyName != "")
+
+register("command", ()=>{
+  ChatLib.say("/pickupstash")
+}).setName("pus")
+
+register("command", (args)=>{
+  ChatLib.say(`/viewstash ${args}`)
+}).setName("vs")

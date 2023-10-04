@@ -25,6 +25,8 @@ import "./features/Trackers/SkillTracker"
 //Party
 import "./features/Party/Party"
 import "./features/Party/PartyCommands"
+//dungeons
+import "./features/Dungeons/terminals"
 //Beacon
 import "./features/Beacon/waypoints"
 import "./features/Beacon/rareMobs"
@@ -137,6 +139,7 @@ function findWorld(){
   tablist = null;
   tablist = TabList.getNames();
     if(tablist == null){
+      ChatLib.chat("not a world")
       data.world = "";
       return;
     }

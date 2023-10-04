@@ -13,6 +13,7 @@ import {
             "Minion Data",
             "QOL",
             "Kuudra",
+            "Dungeons",
             "Beacon Beams",
             "Trackers",
             "Garden",
@@ -27,6 +28,23 @@ import {
     },
 })
 class settings {
+    //Dungeons
+    @SwitchProperty({
+        name: "Melody announce",
+        description: `Says in chat when you get melody`,
+        category: "Dungeons",
+        subcategory: "terminals"
+    })
+    melodyAnnounce = false
+
+    @TextProperty({
+        name: "Melody message",
+        description: `Says in chat when you get melody`,
+        category: "Dungeons",
+        subcategory: "terminals"
+    })
+    melodyMsg = "melody"
+
     //Beacon beams
     @SwitchProperty({
         name: "Waypoint Beam",
@@ -67,6 +85,38 @@ class settings {
         subcategory: "Diana"
     })
     champBeam = false
+
+    @SwitchProperty({
+        name: "Green Jerry",
+        description: `Displays Green Jerry coordinates.`,
+        category: "Beacon Beams",
+        subcategory: "Jerry"
+    })
+    greenJerryBeam = false
+
+    @SwitchProperty({
+        name: "Blue Jerry",
+        description: `Displays Blue Jerry coordinates.`,
+        category: "Beacon Beams",
+        subcategory: "Jerry"
+    })
+    blueJerryBeam = false
+
+    @SwitchProperty({
+        name: "Purple Jerry",
+        description: `Displays Purple Jerry coordinates.`,
+        category: "Beacon Beams",
+        subcategory: "Jerry"
+    })
+    purpleJerryBeam = false
+
+    @SwitchProperty({
+        name: "Golden Jerry",
+        description: `Displays Golden Jerry coordinates.`,
+        category: "Beacon Beams",
+        subcategory: "Jerry"
+    })
+    goldenJerryBeam = false
 
     @SwitchProperty({
         name: "Guild Chat",

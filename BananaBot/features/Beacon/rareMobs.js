@@ -2,8 +2,6 @@ import { sendCoords } from "../../utils/functions";
 import { registerWhen } from "../../utils/functions";
 import settings from "../../settings";
 
-const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand");
-
 registerWhen(register("chat", ()=>{
     sendCoords("Vanquisher")
 }).setCriteria("A Vanquisher is spawning nearby!"), ()=>settings.vanqBeam);
@@ -13,15 +11,28 @@ registerWhen(register("chat", ()=>{
 }).setCriteria("${before} You dug out a Gaia Construct!"), ()=>settings.gaiaBeam);
 
 registerWhen(register("chat", ()=>{
-    const stands = World.getAllEntitiesOfType(EntityArmorStand.class);
-    const inquis = stands.find(stand => stand.getName().includes("Inquisitor"));
-    if(inquis != undefined && settings.inquisBeam){
-        xDiff = Math.abs(inquis.getX() - Player.getX());
-        zDiff = Math.abs(inquis.getZ() - Player.getZ());
-        if(xDiff <= 20 && zDiff <= 20){
-            sendCoords("Inquisitor")
-        }
-    }else if(settings.champBeam){
-        sendCoords("Minos Champion")
-    }
-}).setCriteria("${before} You dug out a Minos Champion!"), ()=>settings.champBeam || settings.inquisBeam);
+    sendCoords("Minos Champion")
+}).setCriteria("${before} You dug out a Minos Champion!"), ()=>settings.champBeam);
+
+registerWhen(register("chat", ()=>{
+    sendCoords("Minos Inquisitor")
+}).setCriteria("${before} You dug out a Minos Inquisitor!"), ()=>settings.inquisBeam);
+
+
+//&b ☺ &eA &aGreen Jerry&e appeared!&r
+
+registerWhen(register("chat", ()=>{
+    sendCoords("Green Jerry")
+}).setChatCriteria("&b ☺ ${before}Green Jerry${after}"), () => settings.greenJerryBeam);
+
+registerWhen(register("chat", ()=>{
+    sendCoords("Blue Jerry")
+}).setChatCriteria("&b ☺ ${before}Blue Jerry${after}"), () => settings.blueJerryBeam);
+
+registerWhen(register("chat", ()=>{
+    sendCoords("Purple Jerry")
+}).setChatCriteria("&b ☺ ${before}Purple Jerry${after}"), () => settings.purpleJerryBeam);
+
+registerWhen(register("chat", ()=>{
+    sendCoords("Golden Jerry")
+}).setChatCriteria("&b ☺ ${before}Golden Jerry${after}"), () => settings.goldenJerryBeam);

@@ -28,6 +28,18 @@ registerWhen(register("chat", (party, coords)=>{
     setRegisters();
 }).setCriteria("${before} [BananaBotCoordinates] ${coords}"), ()=>settings.showBeam)
 
+registerWhen(register("chat", (before, xCoord, yCoord, zCoord)=>{
+    x = parseFloat(xCoord);
+    y = parseFloat(yCoord);
+    z = parseFloat(zCoord);
+    if(x == undefined || y == undefined || z == undefined){
+        x = 0;
+        y = 0;
+        z = 0;
+    }
+    setRegisters();
+}).setCriteria("${before} x: ${xCoord}, y: ${yCoord}, z: ${zCoord}"), ()=>settings.showBeam)
+
 registerWhen(register("step", ()=>{
     x = 0;
     y = 0;
@@ -38,3 +50,7 @@ registerWhen(register("step", ()=>{
 register("command", ()=>{
     ChatLib.say(`/pc [BananaBotCoordinates] x: ${formatInt(Player.getX())}, y: ${formatInt(Player.getY())}, z: ${formatInt(Player.getZ())}`)
 }).setName("bbc")
+
+register("command", ()=>{
+    ChatLib.say(`/pc x: ${formatInt(Player.getX())}, y: ${formatInt(Player.getY())}, z: ${formatInt(Player.getZ())}`)
+}).setName("bc")

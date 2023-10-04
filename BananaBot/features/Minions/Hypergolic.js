@@ -2,9 +2,9 @@ import { formatDouble } from '../../utils/functions';
 import { GREEN, GRAY, RED, DARK_GREEN, BLUE, AQUA, DARK_GRAY, YELLOW, LIGHT_PURPLE } from '../../utils/constants'
 import { readJson } from '../../utils/functions';
 //hypergolic craft recipe
-const eCoal = 2404
-const eSul = 150.25
-const gaba = 13824
+const eCoal = 1202
+const eSul = 75.125
+const gaba = 6912
 
 //calculates price of each neede item
 function calculateHypergolic(){
@@ -17,9 +17,9 @@ function calculateHypergolic(){
   instaBuyHypergolic = priceSellOffer["HYPERGOLIC_GABAGOOL"];
   let costHypergolic = costGabagool+costCoal+costSul
   ChatLib.chat(`${YELLOW}Hypergolic Craft Recipe:`)
-  ChatLib.chat(`${DARK_GRAY}Coal: 2404`)
-  ChatLib.chat(`${RED}Gabagool: 13824`)
-  ChatLib.chat(`${YELLOW}Sulphur: 150.25\n`)
+  ChatLib.chat(`${DARK_GRAY}Coal: ${eCoal}`)
+  ChatLib.chat(`${RED}Gabagool: 6912`)
+  ChatLib.chat(`${YELLOW}Sulphur: ${eSul}\n`)
   ChatLib.chat(`${YELLOW}Hypergolic Craft buy order cost:`)
   ChatLib.chat(`${GRAY}Cost of ${RED}Gabagool (${formatDouble(costGabagool/gaba)}): ${GREEN}${formatDouble(costGabagool)}`)
   ChatLib.chat(`${GRAY}Cost of ${DARK_GRAY}Coal (${formatDouble(costCoal/eCoal)}): ${GREEN}${formatDouble(costCoal)}`)
